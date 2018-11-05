@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.div0{
+	margin-left:1000px;
+}
+.div1, .div2, .div3, .div4, .div8, .div6{
+	width:700px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: 20px;
+}
+.div7{
+	width:700px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: 20px;
+}
+.div1{
+
+	margin-top: 80px;
+}
+.font2{
+	font-size: 35px;
+}
+.div5 a{
+	color:white;
+	width:185px;
+	height:35px;
+	margin:15px 280px;
+	border:none;
+	background-color:blue;
+}
+.div5 a:hover{
+		color:white;
+	}
+.div6 a{
+	color:red;
+}

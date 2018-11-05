@@ -1,0 +1,80 @@
+@charset "UTF-8";
+body{
+	width:1500px;
+}
+/*  整个展示页面*/
+.page-main{
+	float:left;
+	width:1500px;
+	height:100%;
+	margin-left:auto;
+	margin-right:auto;	
+}
+/*页面的所有li */
+li{
+	float:left;
+	list-style: none;
+}
+/* 一个大种类 */
+.box-hd .title{
+	margin-left: 50px;
+}
+/*  小种类*/
+.tab-list li{
+	float:right;
+	padding-right:60px;
+}
+.tab-list li:hover{
+	cursor: pointer;
+	color: orange;
+}
+
+/* 一个商品 */
+.brick-item {
+	 height: 300px;
+    padding: 34px 0 20px;
+    *zoom: 1;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    float: left;
+    width: 234px;
+    margin-left: 14px;
+    margin-bottom: 14px;
+    background: #fff;
+    transition: all .2s linear;
+    text-align: center;
+   margin-left: 100px;
+}
+.brick-item:hover{
+	box-shadow: 0 0px 1pc rgba(0,0,0,.18);
+}
+/*  商品的价格*/
+.brick-item .price{
+	color:red;
+}
+/* 热销 */
+.brick-item .flag{
+	position: absolute;
+	 z-index: 2;
+	width:50px;
+	color:white;
+	background-color:red;
+	text-align: center;
+}
+/* 浏览更多 */
+.brick-item2{
+	margin-left: 50px;
+}
+
+.brick-item2 .more{
+	color:orange;
+}
+/* 浏览更多下面的小种类 */
+.brick-item2 small{
+	margin-top:10px;
+	text-align:center;
+	display: block;
+	position:absolute;
+}
+

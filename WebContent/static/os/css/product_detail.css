@@ -1,0 +1,113 @@
+@charset "UTF-8";
+.product_detail{
+	float:left;
+	width:1000px;
+	height:100%;
+	margin-left:200px;
+	margin-right: auto;
+}
+.nav{
+	width:100%;
+	height:70px;
+	font-size: 20px;
+}
+.goods-detail{
+	float:left;
+	width:1000px;
+	height:500px;
+
+}
+.goods-detail-left{
+	float:left;
+	width:450px;
+	height:100%;
+
+}
+.goods-detail-left img{
+	width:100%;
+	height:100%;
+}
+.goods-detail-right{
+	float:right;
+	margin-left: 50px;
+	width:350px;
+	height:100%;
+}
+/*  商品名*/
+.goods-name{
+	font-size: 35px;
+	font-weight: 5px;
+}
+/*  价格*/
+.goods-price{
+	font-size: 20px;
+	color:red;
+}
+.style-label{
+	font-size: 20px;
+}
+/* 规格：容量和颜色 */
+.goods-size li{
+	float:left;
+	list-style: none;
+	border:solid 1px;
+	margin-left: 30px;
+	font-size: 20px;
+	padding: 5px;
+}
+/*中间商品详情描述和规格参数  */
+.goods-detail-nav{
+	margin-left: 150px;
+	width:100%;
+	float:left;
+}
+/* 商品详情和规格参数标题 */
+.detail-list{
+	font-size: 20px;
+	margin-left: 200px;
+}
+.goods-detail-nav li{
+	float:left;
+	list-style: none;
+	margin-left: 30px;
+}
+/* 详情内容 */
+.goods-detail-desc{
+	width:1000px;
+}
+.goods-detail-desc img{
+	width:100%;
+}
+/* 规格参数标题 */
+.goods-detail-nav-name-block{
+		margin-left:400px;
+}
+/* 规格参数内容 */
+.goods-detail-param{
+	float:left;
+	height:100%;
+	width:100%;
+	margin-top: 30px;
+}
+.goods-detail-param li{
+	list-style: none;
+}
+.param-list{
+	float:left;
+	width:300px;
+	height:100%;
+	background-color:black;
+}
+.param-list2{
+	float:right;
+	height:100%;
+	width:500px;
+	margin-left: 50px;
+}
+.param-list2 li{
+	line-height:50px;
+}
+.goods-detail-service-block{
+	width:100%;
+	float:left;
+}

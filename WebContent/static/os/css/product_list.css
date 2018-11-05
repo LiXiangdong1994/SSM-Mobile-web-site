@@ -1,0 +1,71 @@
+@charset "UTF-8";
+.product_list{
+	float:left;
+	width:1000px;
+	height:100%;
+	margin-left:200px;
+	margin-right: auto;
+	margin-top:10px;
+	background-color:#f2f3f3;
+	
+}
+.product_list li{
+	margin-left:50px;
+	float: left;
+	list-style: none;
+}
+/*  首页>种类*/
+.nav{
+	width:100%;
+	height:30px;
+	font-size: 20px;
+	margin-top: 20px;
+}
+/* 整个所有种类，包括小种类 */
+.category{
+	background-color:white;
+	font-size:15px;
+	width:100%;
+	height: 90px;
+}
+/* 小种类 */
+.categorys{
+	line-height:30px;
+}
+/* 按条件排序 */
+.order-list-box{
+	float:left;
+	font-size:20px;
+	width:100%;
+	height: 20px;
+}
+/* 所有商品内容 */
+.goods-list-box{
+	margin-top:20px;
+	float: left;
+}
+/* 每一个商品内容 */
+.goods-item{
+	width:200px;
+	height:343px;
+	text-align:center;
+	margin-left:45px;
+	float: left;
+}
+.figure{
+	width: 200px;
+	height:
+}
+/* 分页 */
+.page{
+    height: 120px;
+    padding: 15px 0;
+    text-align: center;
+}
+#pager {
+    display: table;
+    margin: auto;
+    height: 80px;
+    padding: 15px 0;
+    text-align: center;
+}

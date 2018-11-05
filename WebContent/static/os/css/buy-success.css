@@ -1,0 +1,27 @@
+@charset "UTF-8";
+.page-main {
+	background-color:aqua;
+	height: 100%;
+	width:1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.top{
+	float:left;
+	height: 50%;
+	width:100%;
+}
+.top .goods-img{
+	float:left;
+}
+.top .goods-info{
+	margin-top:50px;
+		float:left;
+}
+.bottom{
+	float:right;
+	height:30%;
+	width:200px;
+	padding-bottom: 50px;
+
+}

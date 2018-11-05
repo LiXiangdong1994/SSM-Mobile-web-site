@@ -1,0 +1,87 @@
+@charset "UTF-8";
+body{
+	width: 1300px;
+	height:100%;
+	margin-left: auto;
+	margin-right:auto;
+}
+table{
+	border: 1px solid #151515;
+}
+table tr  .th1{
+	font-size:15px;
+	text-align:center;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+}
+table tr .th2{
+	font-size:15px;
+	text-align:center;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+}
+table tr td p{
+	margin-top: 60px;
+	text-align:center;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+}
+
+tr{
+	height: 100px;
+	border:none;
+}
+a{
+	text-decoration: none;
+	color:black;		
+}
+.divv a:active,a:hover{
+	
+	color:#f53708;
+}
+.td1{
+	width:50px;
+	padding-left: 100px;
+}
+.td2{
+	width:100px;
+}
+.td3{
+	width:50px;
+}
+
+.td4{
+	width:50px;
+}
+.change-goods-num p{
+	margin-top: 50px;
+	
+}
+.reduce,.plus{
+	font-size: 25px
+}
+.change-goods-num .count-input{
+	width: 40px;
+	 text-align: center;
+}
+.jiesuan{
+	height:40px;
+	width:100%;
+	float:right;
+	margin:50px 0; 
+	font:normal 25px/24px
+	'MicroSoft YaHei';
+}
+.bar-right{
+	padding-top:10px;
+	float:right;
+}
+.bar-right .btn-primary{
+	width:100px;
+	color:white;
+	background-color: #f65a10;
+}
+

@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+.divv {
+	font-size: 19px;
+    font-family: Arial;
+	height:800px;
+	width:1500px;
+	margin-left:auto;
+	margin-right:auto;	
+	
+}
+/* .main-top{
+	width:100% ;
+	height:170px;
+	float:left;
+}  */
+
+
+
+
+.main-center{
+	float:left;
+	width:100%;
+	height:800px;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+.main-center .nav2{
+	background-color:#f67314;
+	width: 100%;
+	font-size: 20px;
+}
+.main-center .nav2 a{
+	color:white;
+	padding:5px;
+}
+.main-center .nav2 span{
+	color:white;
+}
+/*左边分类  */
+.main-center-left {
+	pisition:absolute;
+	border:1px solid #f67314;
+	float:left;
+	width:20%;
+	height:80%;
+	background-color: white;
+	border-bottom:none;
+}
+.main-center-left .category-item{	
+	padding-top:30px;
+	font-size: 20px;
+	list-style: none;
+	width:200px;
+}
+
+.category-item:hover{
+	background-color: orange;
+}
+a{
+	color:#5d5d5d;
+	text-align:center;
+	font-size: 20px;
+}
+a:active,a:hover{
+	text-decoration:none;
+	color:#f53708;
+}
+/* 中间图片 包括滚动图*/
+.main-center-center{
+	border:1px solid #f67314;
+	float:left;
+	width:60%;
+	height:80%;
+	background-color: white;
+	border-bottom:none;
+}
+/*右边公告  */
+.main-center-right{
+	border:1px solid #f67314;
+	float:right;
+	width:20%;
+	height:80%;
+	background-color: white;
+	border-bottom:none;
+}
+
+
+
+.announcement li{
+	padding-top:20px;
+	text-align:center;
+	font-size: 20px;
+	list-style: none;
+}
+.announcement a{
+	color:#5d5d5d;
+	text-align:center;
+	font-size: 20px;
+}
+.announcement a:active,a:hover{
+	color:#f53708;
+}
+
+
+.category-item:hover .children-col-2{
+	text-align:center;
+	display: block;
+	position:absolute;
+	zindex:999;
+	margin-left:220px;
+	float:left;
+	left:55px;
+	
+}
+.children-col-2
+{
+	position:relative;
+	top:105px;
+	width: 460px;
+	height: 460px;
+	background: #fff;
+	box-shadow: 0 8px 1pc rgba(0,0,0,.18);
+	display:none;
+
+}
+.children .children-list-col-1{
+	list-style:none;
+	float:left;
+	width:210px;
+}
+.children .children-list-col-2{
+	list-style:none;
+	float:left;
+	width:250px;
+}
+

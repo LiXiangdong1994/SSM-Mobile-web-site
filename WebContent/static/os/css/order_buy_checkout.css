@@ -1,0 +1,103 @@
+@charset "UTF-8";
+.page-main{
+	width:1200px;
+	height:100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+.page-main li{
+	list-style: none;
+}
+.address-section{
+	width:1000px;
+	height:100%;
+	float:left;
+}
+.addressmassage{
+	margin-left: 100px;
+}
+.address{
+	margin-top: 25px;
+}
+.address-name-phone .address-name-phone-right{
+	float:right;
+}
+.actions{
+	float: right;
+}
+.goods{
+	float:left;
+	margin-top:20px;
+	width:1000px;
+	height:100%;
+}
+.returncart{
+	float:right;
+}
+.goods-param{
+	font-size:20px;
+	margin-top:30px;
+	width:100%;
+	height:100%;
+	float:left;
+}
+
+.goods-param-left{
+	float:left;
+}
+
+.goods-param-right{
+	width:600x;
+	float:right;
+}
+.goods-param-right span{
+	margin-right:100px;
+	float:right;
+}
+.money-box{
+	float:left;
+	margin-top:10px;
+	width:1000px;
+	height:100%;
+
+}
+.money-box ul{
+	padding-top:15px;
+	float:right;
+}
+.money-box li{
+	margin-top:10px;
+}
+.section-bar{
+	float:left;
+	margin-top:10px;
+	width:1000px;
+	height:100%;
+}
+.section-bar a{
+	width:100px;
+	float:right;
+	background-color: #f65a10;
+}
+.address-edit-box {
+	width: 334px;
+	height:380px;
+	display: none;
+	position: absolute;
+	left:450px;
+	top:150px;
+	background: #fff;
+	border: 1px solid #ff6700;
+	z-index: 9999;
+}
+
+.address-edit-box .box-main {
+	height: 448px;
+	margin-left: 80px;
+	margin-top: 25px;
+}	
+.box-main input,textarea,.form-confirm{
+	height:30x;
+	margin-top: 20px;
+}
+	
