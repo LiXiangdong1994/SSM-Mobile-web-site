@@ -29,7 +29,7 @@
       			<input id="name" type="text" name="loginName" placeholder="手机号码" style="height:35px; width:200px" />
 	 		</div>
 			<div class="div5" >
-	  			<span class="font1">&nbsp&nbsp&nbsp密码: </span>  
+	  			<span class="font1">密&nbsp;&nbsp;&nbsp;&nbsp;码:</span>  
       			<input  type="password" id="password" name="loginPassword" style="height:35px;width:200px"/>
 	 		</div>
 	  		<div class="div7"  >

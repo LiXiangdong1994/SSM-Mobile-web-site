@@ -56,6 +56,15 @@
         from os_product
         where product_number = #{productNumber,jdbcType=BIGINT}
     </select>
+    
+    <select id="selectProduct" parameterType="java.lang.String"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from os_product
+        where name like "%"#{name}"%"
+    </select>
+    
     <select id="selectProductNumberByProductId" parameterType="java.lang.Long"
             resultType="java.lang.Long">
 		SELECT DISTINCT

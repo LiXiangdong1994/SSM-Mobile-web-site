@@ -100,4 +100,16 @@
 	height:30x;
 	margin-top: 20px;
 }
+
+
+.ewm {
+	width: 334px;
+	height:380px;
+	display: none;
+	position: absolute;
+	left:450px;
+	top:150px;
+	z-index: 9999;
+}
+
 	

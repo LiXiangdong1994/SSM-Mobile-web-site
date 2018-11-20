@@ -27,16 +27,21 @@
                   <c:forEach items="${category.childrenCategorys}" var="category" varStatus="categoryStat">
                     <ul class="brick-list">
                       <c:forEach items="${category.products}" var="product" varStatus="productStat">
+                        <!-- 下面是热门产品 -->
                         <c:if test="${!productStat.last}">
                           <li class="brick-item" data-gid="${product.productNumber}">
                               <div class="flag">热销</div>
                               <!--  一个商品，跳转商品详情-->
-                            <div> <a target="_blank" title="${product.name}" href="${ctx}/detail/${product.productNumber}"> <img src="${ctximg}/${product.picImg}" width="160" height="160" alt="${product.name}"> </a> </div>
+                            <div> 
+                            	<a target="_blank" title="${product.name}" href="${ctx}/detail/${product.productNumber}"> 
+                            		<img src="${ctximg}/${product.picImg}" width="160" height="160" alt="${product.name}"> 
+                            	</a> 
+                            </div>
                             <h3 class="title"><a target="_blank" title="${product.name}" href="${ctx}/detail/${product.productNumber}">${product.name}</a></h3>
                             <p class="price"> <span class="num">${product.showPrice}</span>元 </p>
                           </li>
                         </c:if>
-                        
+                        <!-- 下面是非热门产品 -->
                         <c:if test="${productStat.last}" >
                           <li class="brick-item" data-gid="${product.productNumber}">
                             <div> <a target="_blank" title="${product.name}" href="${ctx}/detail/${product.productNumber}"> <img src="${ctximg}/${product.picImg}"  width="160" height="160" alt="${product.name}"> </a> </div>

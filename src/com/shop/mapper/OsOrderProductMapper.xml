@@ -10,15 +10,13 @@
     <result column="product_spec_number" jdbcType="BIGINT" property="productSpecNumber" />
     <result column="product_spec_name" jdbcType="VARCHAR" property="productSpecName" />
     <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="score" jdbcType="INTEGER" property="score" />
     <result column="buy_number" jdbcType="INTEGER" property="buyNumber" />
-    <result column="product_score" jdbcType="INTEGER" property="productScore" />
     <result column="product_amount" jdbcType="DECIMAL" property="productAmount" />
     <result column="comment_status" jdbcType="TINYINT" property="commentStatus" />
   </resultMap>
   <sql id="Base_Column_List">
     order_product_id, order_id, product_number, name, pic_img, product_spec_number, product_spec_name, 
-    price, score, buy_number, product_score, product_amount, comment_status
+    price, buy_number,product_amount, comment_status
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -41,13 +39,13 @@
   <insert id="insert" parameterType="com.shop.po.OsOrderProduct">
     insert into os_order_product (order_product_id, order_id, product_number, 
       name, pic_img, product_spec_number, 
-      product_spec_name, price, score, 
-      buy_number, product_score, product_amount, 
+      product_spec_name, price,
+      buy_number, product_amount, 
       comment_status)
     values (#{orderProductId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{productNumber,jdbcType=BIGINT}, 
       #{name,jdbcType=VARCHAR}, #{picImg,jdbcType=VARCHAR}, #{productSpecNumber,jdbcType=BIGINT}, 
-      #{productSpecName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{score,jdbcType=INTEGER}, 
-      #{buyNumber,jdbcType=INTEGER}, #{productScore,jdbcType=INTEGER}, #{productAmount,jdbcType=DECIMAL}, 
+      #{productSpecName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},
+      #{buyNumber,jdbcType=INTEGER}, #{productAmount,jdbcType=DECIMAL}, 
       #{commentStatus,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.shop.po.OsOrderProduct">
@@ -77,15 +75,10 @@
       <if test="price != null">
         price,
       </if>
-      <if test="score != null">
-        score,
-      </if>
       <if test="buyNumber != null">
         buy_number,
       </if>
-      <if test="productScore != null">
-        product_score,
-      </if>
+      
       <if test="productAmount != null">
         product_amount,
       </if>
@@ -118,14 +111,9 @@
       <if test="price != null">
         #{price,jdbcType=DECIMAL},
       </if>
-      <if test="score != null">
-        #{score,jdbcType=INTEGER},
-      </if>
+      
       <if test="buyNumber != null">
         #{buyNumber,jdbcType=INTEGER},
-      </if>
-      <if test="productScore != null">
-        #{productScore,jdbcType=INTEGER},
       </if>
       <if test="productAmount != null">
         #{productAmount,jdbcType=DECIMAL},
@@ -159,14 +147,8 @@
       <if test="price != null">
         price = #{price,jdbcType=DECIMAL},
       </if>
-      <if test="score != null">
-        score = #{score,jdbcType=INTEGER},
-      </if>
       <if test="buyNumber != null">
         buy_number = #{buyNumber,jdbcType=INTEGER},
-      </if>
-      <if test="productScore != null">
-        product_score = #{productScore,jdbcType=INTEGER},
       </if>
       <if test="productAmount != null">
         product_amount = #{productAmount,jdbcType=DECIMAL},
@@ -186,9 +168,7 @@
       product_spec_number = #{productSpecNumber,jdbcType=BIGINT},
       product_spec_name = #{productSpecName,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
-      score = #{score,jdbcType=INTEGER},
       buy_number = #{buyNumber,jdbcType=INTEGER},
-      product_score = #{productScore,jdbcType=INTEGER},
       product_amount = #{productAmount,jdbcType=DECIMAL},
       comment_status = #{commentStatus,jdbcType=TINYINT}
     where order_product_id = #{orderProductId,jdbcType=BIGINT}

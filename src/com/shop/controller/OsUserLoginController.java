@@ -1,5 +1,6 @@
 package com.shop.controller;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -152,5 +153,43 @@ public class OsUserLoginController {
             return new OsResult(0, "删除收货地址失败");
         }
     }
-
+  //跳转我的毕业设计
+    @RequestMapping("/user_message")
+    public String usermessage(HttpServletRequest request) {
+        return "/user/user_message";
+    }
+  //跳转收货地址
+    @RequestMapping("/user_address")
+    public String useraddress(HttpSession session, HttpServletRequest request) {
+    	OsUser user = (OsUser) session.getAttribute("user");
+   // 收货地址
+        List<OsAddress> addresses = osAddressService.listAddress(user.getUserId());
+        request.setAttribute("addresses", addresses);
+        return "/user/user_address";
+    }
+    // 修改密码和用户名
+    @RequestMapping("/user_modifyPassword")
+    public String usermodifyPassword(HttpServletRequest request) {
+        return "/user/user_modifyPassword";
+    }
+    
+    
+    /**
+     * 修改密码
+     * @return
+     */
+    @RequestMapping(value="/modify", method=RequestMethod.POST)
+	@ResponseBody
+	public Object updatepassword(@RequestParam("password") String password,
+						@RequestParam("newpassword") String newpassword,HttpSession session) {
+    	  OsUser osUser = (OsUser) session.getAttribute("user");
+    	  if (password.equals(osUser.getLoginPassword())) {
+    		  osUser.setLoginPassword(newpassword);
+              osUserService.updatepassword(osUser);
+              session.invalidate();
+              return new OsResult(1, "修改密码成功！");
+		}else {
+			 return new OsResult(0, "修改密码失败！");
+		}
+	} 
 }

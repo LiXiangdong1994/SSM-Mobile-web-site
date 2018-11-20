@@ -5,15 +5,23 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.shop.po.OsProductDetail;
 import com.shop.vo.KindVO;
+import com.shop.vo.ProductVO;
+
+import ch.ethz.ssh2.Session;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shop.common.OsResult;
 import com.shop.po.OsProduct;
 import com.shop.po.OsProductImage;
 import com.shop.po.OsProductParameter;
@@ -39,6 +47,26 @@ public class OsProductController {
 		request.setAttribute("categorys", categorys);
 		return "/recommend/recommend_hot";
 	}
+	// 查询商品
+		@RequestMapping(value="/recommend/search", method=RequestMethod.POST)
+		@ResponseBody
+		public Object search(HttpServletRequest request, @RequestParam("name") String name,HttpSession session) {
+			List<ProductVO> OsProducts = osProductService.selectProduct(name);
+			if (OsProducts==null) {
+				 return new OsResult(0, "");
+			}else {
+				request.setAttribute("OsProducts", OsProducts);
+				session.setAttribute("OsProducts",request.getAttribute("OsProducts"));
+				System.out.println(OsProducts);
+				 return new OsResult(1, "");
+			}
+		}
+		@RequestMapping("/recommend/search2")
+		public String search2(HttpServletRequest request,HttpSession session) {
+			Object iObject=  session.getAttribute("OsProducts");
+			request.setAttribute("OsProducts", iObject);
+			return "/recommend/recommend_search";
+		}
 
 	// 商品详情
 	@RequestMapping("/detail/{productNumber}")

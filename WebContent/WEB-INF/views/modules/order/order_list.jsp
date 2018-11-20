@@ -38,10 +38,11 @@
 						</div>
                 	</c:forEach>
                 		<p class="p7">${orderVO.payAmount}</p>
-              		 		<a id="J_cancelOrder" title="取消订单"  onclick="order_list_delete(this,${orderVO.orderId})">
+                		
+                		<a id="evaluation" title="订单评价"  onclick="">去评价</a> 
+              		 		<a id="J_cancelOrder" title="删除订单"  onclick="order_list_delete(this,${orderVO.orderId})">
               					<i class="glyphicon glyphicon-remove"></i>
              				</a> 
-             		 	
          	</div>
          	 <hr style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="100%" color=#636363 SIZE=1>
     	</c:forEach>

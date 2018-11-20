@@ -16,7 +16,6 @@ public class OsProductSpecification implements java.io.Serializable {
 	private Integer stock;
 	private Integer salesVolume;
 	private BigDecimal price;
-	private Integer score;
 	private Byte defaultStatus;
 	private Byte status;
 	private Date createTime;
@@ -34,7 +33,6 @@ public class OsProductSpecification implements java.io.Serializable {
 		this.stock = stock;
 		this.salesVolume = salesVolume;
 		this.price = price;
-		this.score = score;
 		this.defaultStatus = defaultStatus;
 		this.status = status;
 		this.createTime = createTime;
@@ -95,14 +93,6 @@ public class OsProductSpecification implements java.io.Serializable {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
-	}
-
-	public Integer getScore() {
-		return this.score;
-	}
-
-	public void setScore(Integer score) {
-		this.score = score;
 	}
 
 	public Byte getDefaultStatus() {

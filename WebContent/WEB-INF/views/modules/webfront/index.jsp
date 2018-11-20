@@ -9,20 +9,26 @@
 <link rel="stylesheet" href="${ctxsta}/os/css/index.css">
 </head>
 <body>
+<div class="search">
+		
+		<div id="J_recommend_search">
+		</div>
+<div style="width:1500px;margin-left: 120px;" class="site_header">
 	<!-- 左边列表 -->
 	<jsp:include page="/WEB-INF/views/modules/common/site_header.jsp" />
 	
+	</div>
 		<!--     主产品  begin    -->
 	<div class="page-main home-main">
 		<div class="container-fluid">
 			<div class="row">
-						<div id="J_hotCategory"
-							class="home-recm-box home-brick-box xm-plain-box">
-							<!-- <h2 class="title">叮叮当，叮叮当，铃儿响叮当   (」o^∀^)」*゜</h2> -->
+					<div id="J_hotCategory" class="home-recm-box home-brick-box xm-plain-box">
 				</div>
+				
 			</div>
 		</div>
 	</div>
+</div>
 	<myfooter> <script src="${ctxsta}/os/js/index.js"></script>
 	</myfooter>
 </body>

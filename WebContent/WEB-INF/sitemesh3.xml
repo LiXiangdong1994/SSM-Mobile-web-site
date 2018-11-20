@@ -9,7 +9,6 @@
     <mapping path="/cart/topbar" exclue="true"/>
     <mapping path="/comment/tileLineList" exclue="true"/>
     <mapping path="/swagger-ui.html" exclue="true"/>
-    
   	<!-- 前端商城布局 ,表示在/*/*、/*、/index、/下的文件套用/WEB-INF/layouts/web/default.jsp的模板-->
     <mapping>
       <path>/*/*</path>

@@ -63,11 +63,21 @@ table{
 	height:60px;
 	width:600px;
 }
+.operation{
+	float:right;
+}
 #J_cancelOrder{
 	margin-top:20px;
 	height:50px;
 	width:50px;
 	float:right;
+}
+#evaluation{
+	margin-left:120px;
+	margin-top:20px;
+	height:50px;
+	width:50px;
+	float:left;
 }
 
 

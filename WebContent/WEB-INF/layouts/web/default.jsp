@@ -15,9 +15,9 @@
 	<sitemesh:write property='head' /><!--说明要被修饰的jsp的title将被填充到这儿  -->
   </head>
   <body>
-
+	<div style="margin-left: 120px;">
 	<jsp:include page="/WEB-INF/layouts/web/header.jsp" />
-	
+	</div>
 	<sitemesh:write property='body' />
 	
 	<jsp:include page="/WEB-INF/layouts/web/footer.jsp" />

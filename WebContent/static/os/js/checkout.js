@@ -4,7 +4,6 @@ function Show(a) {
 		$(".address-edit-box").show();
 		var e = $(document).width(),
 			f = $(document).height();
-		$("#J_editAddrBackdrop").show()
 }
 
 /*关闭地址栏*/
@@ -147,23 +146,29 @@ function address_delete(obj, data) {
  */
 $(function() {
 	$("#J_checkoutToPay").on("click", function() {
-		var params = {};
-		params.addressId = $("#J_addressList").find(".addressmassage").attr('data-address_id');
-		console.log(params);
-		$.ajax({
-			url : baselocation + '/buy/confirm',
-			type : 'post',
-			dataType : 'json',
-			data : params,
-			success : function(result) {
-				if (result.code == true) {
-					window.location.href = baselocation + '/buy/confirm/' + result.message;
-				} else {
-					layer.alert(result.message, {
-						icon : 2
-					});
+		$(".ewm").show();
+		$("#pay_ok").on("click",function(){
+			var params = {};
+			params.addressId = $("#J_addressList").find(".addressmassage").attr('data-address_id');
+			console.log(params);
+			$.ajax({
+				url : baselocation + '/buy/confirm',
+				type : 'post',
+				dataType : 'json',
+				data : params,
+				success : function(result) {
+					if (result.code == true) {
+						window.location.href = baselocation + '/buy/confirm/' + result.message;
+					} else {
+						layer.alert(result.message, {
+							icon : 2
+						});
+					}
 				}
-			}
-		});
+			});
+		})
+		$("#pay_cancel").on("click",function(){
+			$(".ewm").hide();
+		})
 	})
 })

@@ -1,5 +1,6 @@
 package com.shop.service;
 
+/*import com.shop.dao.OsCartMapper;*/
 import com.shop.dao.OsProductMapper;
 import com.shop.dao.OsProductSpecificationMapper;
 import com.shop.dao.OsSpecificationAttributeMapper;
@@ -28,6 +29,8 @@ public class OsProductCartService {
     private OsProductSpecificationMapper osProductSpecificationMapper;
     @Autowired
     private OsProductMapper osProductMapper;
+    /*@Autowired
+    private OsCartMapper osCartMapper;*/
     @Autowired
     private OsSpecificationAttributeMapper osSpecificationAttributeMapper;
 
@@ -72,8 +75,8 @@ public class OsProductCartService {
                     }
                 }
                 shoppingCartVO.setSpecificationName(list);
-
                 cartVO.getShoppingCartVOs().add(shoppingCartVO);
+                //osCartMapper.insert(shoppingCartVO);
             }
 
 

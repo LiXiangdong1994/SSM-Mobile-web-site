@@ -66,3 +66,36 @@ $(function() {
 });
 
 
+/**
+ * 修改密码
+ */
+$(function() {
+	$(".modify").click(function() {
+		
+		password = $("#password").val();
+		newpassword = $("input[name='newpassword']").val();
+		if (password==""||newpassword==""){
+			alert("请输入密码");
+			return
+		}
+		$.ajax({
+			type : "POST",
+			url : baselocation + '/pass/modify',
+			data : {
+				"password" : password,
+				"newpassword" : newpassword
+			},
+			dataType : "json",
+			success : function(result) {
+				if (result.code == 1) {
+					alert("密码修改成功，请重新登录！");
+				} else {
+					alert("原密码不正确")
+				}
+			}
+		})
+	});
+});
+
+
+

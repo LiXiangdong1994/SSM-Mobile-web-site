@@ -33,7 +33,7 @@ public class OsOrderBuyController {
     private OsOrderService osOrderService;
 
     /**
-     * GET 填写订单信息
+     * GET 填写订单信息 收货地址
      *
      * @return
      */
@@ -123,7 +123,7 @@ public class OsOrderBuyController {
     }
 
     /**
-     * GET 确认订单
+     * GET 确认订单，支付成功后
      *
      * @return
      */
@@ -133,7 +133,6 @@ public class OsOrderBuyController {
         OsOrder order = osOrderService.getByOrderNumber(orderNumber, user.getUserId());
 
         if (order != null) {
-
             List<OsOrderProduct> osOrderProducts = osOrderService.getOrderProductByOrderNumber(order.getOrderId());
 
             OsOrderShipment osOrderShipment = osOrderService.getOrderShipmentByOrderId(order.getOrderId());
@@ -147,7 +146,7 @@ public class OsOrderBuyController {
         return "/order/order_buy_confirm";
     }
     
-    
+    //订单列表
     @RequestMapping(value = "/list")
     public String orderUI(HttpSession session, HttpServletRequest request,
                           @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,

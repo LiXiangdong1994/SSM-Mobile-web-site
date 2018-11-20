@@ -9,7 +9,6 @@
         <result column="stock" jdbcType="INTEGER" property="stock"/>
         <result column="sales_volume" jdbcType="INTEGER" property="salesVolume"/>
         <result column="price" jdbcType="DECIMAL" property="price"/>
-        <result column="score" jdbcType="INTEGER" property="score"/>
         <result column="default_status" jdbcType="TINYINT" property="defaultStatus"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
@@ -27,7 +26,7 @@
     </resultMap>
     <sql id="Base_Column_List">
     product_spec_id, product_spec_number, product_id, spec, stock, sales_volume, price, 
-    score, default_status, status, create_time, update_time
+    default_status, status, create_time, update_time
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
@@ -86,12 +85,12 @@
     <insert id="insert" parameterType="com.shop.po.OsProductSpecification">
     insert into os_product_specification (product_spec_id, product_spec_number, product_id, 
       spec, stock, sales_volume, 
-      price, score, default_status, 
+      price, default_status, 
       status, create_time, update_time
       )
     values (#{productSpecId,jdbcType=BIGINT}, #{productSpecNumber,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, 
       #{spec,jdbcType=VARCHAR}, #{stock,jdbcType=INTEGER}, #{salesVolume,jdbcType=INTEGER}, 
-      #{price,jdbcType=DECIMAL}, #{score,jdbcType=INTEGER}, #{defaultStatus,jdbcType=TINYINT}, 
+      #{price,jdbcType=DECIMAL}, #{defaultStatus,jdbcType=TINYINT}, 
       #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -118,9 +117,6 @@
             </if>
             <if test="price != null">
                 price,
-            </if>
-            <if test="score != null">
-                score,
             </if>
             <if test="defaultStatus != null">
                 default_status,
@@ -157,9 +153,6 @@
             <if test="price != null">
                 #{price,jdbcType=DECIMAL},
             </if>
-            <if test="score != null">
-                #{score,jdbcType=INTEGER},
-            </if>
             <if test="defaultStatus != null">
                 #{defaultStatus,jdbcType=TINYINT},
             </if>
@@ -195,9 +188,6 @@
             <if test="price != null">
                 price = #{price,jdbcType=DECIMAL},
             </if>
-            <if test="score != null">
-                score = #{score,jdbcType=INTEGER},
-            </if>
             <if test="defaultStatus != null">
                 default_status = #{defaultStatus,jdbcType=TINYINT},
             </if>
@@ -221,7 +211,6 @@
       stock = #{stock,jdbcType=INTEGER},
       sales_volume = #{salesVolume,jdbcType=INTEGER},
       price = #{price,jdbcType=DECIMAL},
-      score = #{score,jdbcType=INTEGER},
       default_status = #{defaultStatus,jdbcType=TINYINT},
       status = #{status,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},

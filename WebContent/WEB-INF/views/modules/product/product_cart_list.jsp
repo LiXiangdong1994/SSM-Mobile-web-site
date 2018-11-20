@@ -27,7 +27,6 @@
         </tr>  
          
 		<c:forEach items="${sessionScope.cart.shoppingCartVOs}" var="shoppingCart">
-           
             <tr class="tr2" data-sid="${shoppingCart.productSpecNumber}">  
                 <td class="td1" ><input type="checkbox" style="width:50px; height:25px;"name="ids" value="false" class="son_check"  data-initial="true" data-sid="${shoppingCart.productSpecNumber}" data-check-status="1"/></td>  
                 <td class="td2">

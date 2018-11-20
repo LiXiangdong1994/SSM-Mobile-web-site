@@ -16,9 +16,7 @@ public class OsOrderProduct implements java.io.Serializable {
 	private Long productSpecNumber;
 	private String productSpecName;
 	private BigDecimal price;
-	private Integer score;
 	private Integer buyNumber;
-	private Integer productScore;
 	private BigDecimal productAmount;
 	private Byte commentStatus;
 
@@ -26,7 +24,7 @@ public class OsOrderProduct implements java.io.Serializable {
 	}
 
 	public OsOrderProduct(Long orderId, Long productNumber, String name, String picImg, Long productSpecNumber,
-			String productSpecName, BigDecimal price, Integer score, Integer buyNumber, Integer productScore,
+			String productSpecName, BigDecimal price, Integer score, Integer buyNumber,
 			BigDecimal productAmount, Byte commentStatus) {
 		this.orderId = orderId;
 		this.productNumber = productNumber;
@@ -35,9 +33,7 @@ public class OsOrderProduct implements java.io.Serializable {
 		this.productSpecNumber = productSpecNumber;
 		this.productSpecName = productSpecName;
 		this.price = price;
-		this.score = score;
 		this.buyNumber = buyNumber;
-		this.productScore = productScore;
 		this.productAmount = productAmount;
 		this.commentStatus = commentStatus;
 	}
@@ -106,28 +102,12 @@ public class OsOrderProduct implements java.io.Serializable {
 		this.price = price;
 	}
 
-	public Integer getScore() {
-		return this.score;
-	}
-
-	public void setScore(Integer score) {
-		this.score = score;
-	}
-
 	public Integer getBuyNumber() {
 		return this.buyNumber;
 	}
 
 	public void setBuyNumber(Integer buyNumber) {
 		this.buyNumber = buyNumber;
-	}
-
-	public Integer getProductScore() {
-		return this.productScore;
-	}
-
-	public void setProductScore(Integer productScore) {
-		this.productScore = productScore;
 	}
 
 	public BigDecimal getProductAmount() {

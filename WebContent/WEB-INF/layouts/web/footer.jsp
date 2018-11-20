@@ -41,7 +41,7 @@
             
                  <hr style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="100%" color=#636363 SIZE=1>
                 <div style="margin-bottom:5px;margin-left: 60px;line-height: 40px">
-                    <a href="#">关于淘宝</a>
+                    <a href="#">关于毕业设计</a>
                     <a href="#">合作伙伴</a>
                     <a href="#">营销中心</a>
                     <a href="#">廉正举报</a>

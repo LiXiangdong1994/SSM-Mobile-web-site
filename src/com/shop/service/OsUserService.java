@@ -17,4 +17,8 @@ public class OsUserService {
 		OsUser user=osUserMapper.selectByTelephone(loginName);
 		return user;
 	}
+	/*登录验证函数*/
+	public void updatepassword(OsUser user) {
+		osUserMapper.updateByPrimaryKey(user);
+	}
 }

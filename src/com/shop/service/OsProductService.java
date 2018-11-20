@@ -153,7 +153,14 @@ public class OsProductService {
         OsProduct osProduct = osProductMapper.getProductBySpecNumber(productSpecNumber);
         return osProduct;
     }
-
+    
+    /**
+     * 根据商品名 查询商品
+     */
+    public List<ProductVO> selectProduct(String name) {
+        List<ProductVO> osProducts = osProductMapper.selectProduct(name);
+        return osProducts;
+    }
     private static void reverseArray(String[] Array) {
         ArrayList<String> array_list = new ArrayList<String>();
         for (int i = 0; i < Array.length; i++) {

@@ -44,7 +44,8 @@
               	<input type="text" id="user_tag" name="user_tag" placeholder="如&quot;家&quot;、&quot;公司&quot;。限5个字内">
           		<div class="form-confirm clearfix">
            	 		<input class="input-text J_addressInput" type="hidden" id="address_id" name="address_id">
-            		<a href="javascript:void(0);" class="btn btn-primary" id="J_save" >保存</a> <a href="javascript:void(0);" class="btn btn-gray" id="J_cancel">取消</a> 
+            		<a href="javascript:void(0);" class="btn btn-primary" id="J_save" >保存</a> 
+            		<a href="javascript:void(0);" class="btn btn-gray" id="J_cancel">取消</a> 
             	</div>
         	</div>
         </div>
@@ -98,6 +99,11 @@
       <div class="section-bar">
         <div class="fr"> 
         	<a href="javascript:void(0);" class="btn btn-primary" id="J_checkoutToPay" >去结算</a> 
+        </div>
+        <div class="ewm">
+        	<img class="pay" alt="pay" src="${ctximg}/images/支付宝二维码.jpg">
+        	<a href="javascript:void(0);" class="btn btn-primary" id="pay_ok" style="margin-right:50px; ">我已支付</a> 
+        	<a href="javascript:void(0);" class="btn btn-gray" id="pay_cancel" style="margin-right:20px; ">取消支付</a> 
         </div>
     </div>
 </div>

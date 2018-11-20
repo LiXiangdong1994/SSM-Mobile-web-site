@@ -7,6 +7,7 @@ import java.util.Set;
 import com.shop.po.OsOrderProduct;
 import com.shop.po.OsProduct;
 import com.shop.vo.CategoryVO;
+import com.shop.vo.ProductVO;
 import com.shop.vo.HotCategoryVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -24,6 +25,8 @@ public interface OsProductMapper {
     int updateByPrimaryKey(OsProduct record);
     
     List<OsProduct> getHotProduct(CategoryVO vo);
+    
+    List<ProductVO> selectProduct(String name);
     
     ArrayList<HotCategoryVO> getAllCategory();
     

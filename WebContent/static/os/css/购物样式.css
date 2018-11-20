@@ -108,8 +108,8 @@ a:active,a:hover{
 	text-align:center;
 	display: block;
 	position:absolute;
-	zindex:999;
-	margin-left:220px;
+	z-index:999;
+	margin-left:340px;
 	float:left;
 	left:55px;
 	

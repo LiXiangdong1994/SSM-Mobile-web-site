@@ -16,7 +16,7 @@
    					<li class="li1"><a rel="nofollow" class="link" href="${ctx}/pass/login">登录</a></li>
    					<li class="li1"><a href="${ctx}/pass/register">注册</a></li>  
    					<li class="li1"><a href='${ctx}/index'>首页</a></li>
-   					<li class="li1"><a href="#">手机逛淘宝</a></li>    					
+   					<li class="li1"><a href="#">手机版商城</a></li>    					
 			</div>
 		</c:if>
 		 <c:if test="${not empty user.userNumber}">
@@ -24,11 +24,11 @@
    					<li class="li1"><span class="name">${user.userName}</span>&nbsp;&nbsp;</li>
    					<li class="li1"><a rel="nofollow" href="${ctx}/pass/logout">退出登录</a></li>  
    					<li class="li1"><a href='${ctx}/index'>首页</a></li>
-   					<li class="li1"><a href="#">手机逛淘宝</a></li>    					
+   					<li class="li1"><a href="#">手机版商城</a></li>    					
 			</div>
 			<div class="main-top1-right">
 				<li class="li2">
-					<a href="我的淘宝.jsp" target="_blank">我的淘宝</a>
+					<a href="${ctx}/pass/user_message" target="_blank">我的商城</a>
 					<div class="dropdownlist">
 						<a href="user_show_userDetails.action">个人资料</a>
       					<a href="order_finduserid.action">已买的商品</a>     					
