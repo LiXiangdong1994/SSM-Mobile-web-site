@@ -1,0 +1,43 @@
+@charset "UTF-8";
+.address-section{
+	margin-left:50px;
+	font-size:20px;
+	width:1000px;
+	height:100%;
+	float:left;
+}
+.addressmassage{
+	margin-left: 100px;
+}
+.address{
+	margin-top: 25px;
+}
+.address-name-phone .address-name-phone-right{
+	
+}
+.actions {
+	margin-top: 40px;
+}
+.actions a{
+	padding-left: 50px;
+}
+.address-edit-box {
+	width: 260px;
+	height:380px;
+	display: none;
+	position: absolute;
+	left:250px;
+	background: #fff;
+	border: 1px solid #ff6700;
+	z-index: 9999;
+}
+
+.address-edit-box .box-main {
+	height: 448px;
+	margin-left: 40px;
+	margin-top: 25px;
+}	
+.box-main input,textarea,.form-confirm{
+	height:30x;
+	margin-top: 20px;
+}
