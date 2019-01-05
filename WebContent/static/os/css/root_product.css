@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.product-edit-box {
+	width: 334px;
+	height:380px;
+	display: none;
+	position: absolute;
+	left:450px;
+	top:150px;
+	background: #fff;
+	border: 1px solid #ff6700;
+	z-index: 9999;
+}
+
+.product-edit-box .box-main {
+	height: 448px;
+	margin-left: 80px;
+	margin-top: 25px;
+}	
