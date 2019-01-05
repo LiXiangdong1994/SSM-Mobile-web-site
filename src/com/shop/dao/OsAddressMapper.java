@@ -12,6 +12,8 @@ public interface OsAddressMapper {
     int insertSelective(OsAddress record);
 
     OsAddress selectByPrimaryKey(Long addressId);
+    
+    OsAddress selectaddressByUserId(Long userId);
 
     List<OsAddress> selectByUserId(Long userId);
 

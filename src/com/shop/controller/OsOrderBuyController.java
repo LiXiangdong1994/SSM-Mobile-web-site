@@ -68,7 +68,6 @@ public class OsOrderBuyController {
             order.setOrderNumber(num);
             order.setBuyNumber(cart.getTotalNumber());
             order.setCreateTime(new Date());
-            order.setOrderAmount(cart.getTotalPrice());
             order.setOrderStatus(new Byte("1"));//1 提交
             order.setUserId(user.getUserId());
             order.setPayAmount(cart.getTotalPrice());
@@ -98,25 +97,8 @@ public class OsOrderBuyController {
                 osOrderProduct.setPrice(vo.getPrice());
                 osOrderProduct.setProductNumber(vo.getProductNumber());
                 osOrderProduct.setProductAmount(vo.getProductAmount());
-
                 osOrderService.saveOrderProduct(osOrderProduct);
             }
-
-            //保存订单配送收货地址
-            OsOrderShipment orderShipment = new OsOrderShipment();
-            orderShipment.setOrderId(oderId);
-            BeanUtils.copyProperties(address, orderShipment);
-            osOrderService.saveOrderShioment(orderShipment);
-
-            //保存订单状态
-            OsOrderStatus osOrderStatus = new OsOrderStatus();
-            osOrderStatus.setOrderId(oderId);
-            osOrderStatus.setOrderStatus(new Byte("1"));
-            osOrderStatus.setCreateTime(new Date());
-            osOrderStatus.setCreateStatus(new Byte("0"));
-            osOrderStatus.setRemarks("订单提交");
-            osOrderService.saveOrderStatus(osOrderStatus);
-
             return new OsResult(1, String.valueOf(num));
         }
         return null;
@@ -131,16 +113,14 @@ public class OsOrderBuyController {
     public String confirmShow( @PathVariable Long orderNumber, HttpSession session, HttpServletRequest request) {
         OsUser user = (OsUser) session.getAttribute("user");
         OsOrder order = osOrderService.getByOrderNumber(orderNumber, user.getUserId());
-
+        OsAddress address=osAddressService.selectaddressByUserId(user.getUserId());
         if (order != null) {
             List<OsOrderProduct> osOrderProducts = osOrderService.getOrderProductByOrderNumber(order.getOrderId());
 
-            OsOrderShipment osOrderShipment = osOrderService.getOrderShipmentByOrderId(order.getOrderId());
-
             request.setAttribute("order", order); // 订单信息
             request.setAttribute("orderProducts", osOrderProducts);// 订单详情表
-            request.setAttribute("orderShipment", osOrderShipment);// 订单配送表
-            return "/order/order_buy_confirm";
+         request.setAttribute("address", address);//
+           return "/order/order_buy_confirm";
         }
 
         return "/order/order_buy_confirm";

@@ -97,7 +97,6 @@ public class OsUserLoginController {
         response.setHeader("Cache-Control", "no-cache");
         response.setDateHeader("Expires", 0);
         CreateImageCode vCode = new CreateImageCode(100, 30, 4, 8);
-        System.out.println("code" + vCode.getCode());
         session.setAttribute("code", vCode.getCode());
         vCode.write(response.getOutputStream());
     }

@@ -9,32 +9,22 @@ import java.util.Date;
 public class OsCategory implements java.io.Serializable {
 
 	private Long categoryId;
-	private Long parentId;
 	private String name;
-	private Integer sort;
-	private Byte type;
 	private Date createTime;
 	private Date updateTime;
 	private String pageTitle;
 	private String pageDescription;
-	private String pageKeyword;
-	private String remarks;
 
 	public OsCategory() {
 	}
 
-	public OsCategory(Long parentId, String name, Integer sort, Byte type, Date createTime, Date updateTime,
+	public OsCategory(String name, Date createTime, Date updateTime,
 			String pageTitle, String pageDescription, String pageKeyword, String remarks) {
-		this.parentId = parentId;
 		this.name = name;
-		this.sort = sort;
-		this.type = type;
 		this.createTime = createTime;
 		this.updateTime = updateTime;
 		this.pageTitle = pageTitle;
 		this.pageDescription = pageDescription;
-		this.pageKeyword = pageKeyword;
-		this.remarks = remarks;
 	}
 
 	public Long getCategoryId() {
@@ -45,13 +35,6 @@ public class OsCategory implements java.io.Serializable {
 		this.categoryId = categoryId;
 	}
 
-	public Long getParentId() {
-		return this.parentId;
-	}
-
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
-	}
 
 	public String getName() {
 		return this.name;
@@ -60,23 +43,6 @@ public class OsCategory implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name == null ? null : name.trim();
 	}
-
-	public Integer getSort() {
-		return this.sort;
-	}
-
-	public void setSort(Integer sort) {
-		this.sort = sort;
-	}
-
-	public Byte getType() {
-		return this.type;
-	}
-
-	public void setType(Byte type) {
-		this.type = type;
-	}
-
 	public Date getCreateTime() {
 		return this.createTime;
 	}
@@ -107,22 +73,6 @@ public class OsCategory implements java.io.Serializable {
 
 	public void setPageDescription(String pageDescription) {
 		this.pageDescription = pageDescription == null ? null : pageDescription.trim();
-	}
-
-	public String getPageKeyword() {
-		return this.pageKeyword;
-	}
-
-	public void setPageKeyword(String pageKeyword) {
-		 this.pageKeyword = pageKeyword == null ? null : pageKeyword.trim();
-	}
-
-	public String getRemarks() {
-		return this.remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		  this.remarks = remarks == null ? null : remarks.trim();
 	}
 
 }

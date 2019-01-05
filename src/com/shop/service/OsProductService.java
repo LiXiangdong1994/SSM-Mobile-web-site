@@ -1,31 +1,59 @@
 package com.shop.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.shop.dao.*;
 import com.shop.po.*;
+import com.shop.util.GetRandom;
 import com.shop.vo.*;
 import net.sf.json.JSONObject;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OsProductService {
+	private File upload; 
+  	private String uploadFileName;
+  	private String uploadContentType;
+  	public File getUpload() {  
+        return upload;  
+    }  
+    public void setUpload(File upload) {  
+        this.upload = upload;  
+    }  
+    public String getUploadFileName() {  
+        return uploadFileName;  
+    }  
+    public void setUploadFileName(String uploadFileName) {  
+        this.uploadFileName = uploadFileName;  
+    }  
+    public String getUploadContentType() {  
+        return uploadContentType;  
+    }  
+    public void setUploadContentType(String imageContentType) {  
+        this.uploadContentType = uploadContentType;  
+    }  
 
     @Autowired
     private OsProductMapper osProductMapper;
-    @Autowired
-    private OsProductCategoryMapper osProductCategoryMappert;
-    @Autowired
-    private OsProductDetailMapper osProductDetailMapper;
-    @Autowired
-    private OsProductImageMapper osProductImageMapper;
+  /*  @Autowired
+    private OsProductCategoryMapper osProductCategoryMappert;*/
     @Autowired
     private OsProductParameterMapper osProductParameterMapper;
     @Autowired
     private OsProductSpecificationMapper osProductSpecificationMapper;
+    @Autowired
+    private OsOrderProductMapper osOrderProductMapper;
     @Autowired
     private OsSpecificationMapper osSpecificationMapper;
     @Autowired
@@ -36,33 +64,57 @@ public class OsProductService {
     private OsCategoryService osCategoryService;
 
     /**
-     * 查询热门分类商品
+     * 查询所有分类新商品
      */
-    public ArrayList<HotCategoryVO> getHotCategory() {
-        //先查找大类的二级类  在查找父类下的商品
-        ArrayList<HotCategoryVO> categorys = osProductMapper.getAllCategory();
-        for (HotCategoryVO hot : categorys) {
-            List<CategoryVO> child = hot.getChildrenCategorys();
-            for (CategoryVO vo : child) {
-                List<OsProduct> list = osProductMapper.getHotProduct(vo);
-                vo.setProducts(list);
-            }
-        }
-        return categorys;
+    public ArrayList<ProductVO> getAllNewProduct() {
+        ArrayList<ProductVO> productVOs = osProductMapper.getAllNewProduct();
+        return productVOs;
     }
-
+    /**
+     * 查询所有分类热门商品
+     */
+    public ArrayList<ProductVO> getAllHotProduct() {
+    	  ArrayList<ProductVO> HotProductnumber = osOrderProductMapper.getHotProductNumber();
+        ArrayList<ProductVO> hotproductVOs = osProductMapper.getAllHotProduct(HotProductnumber);
+        return hotproductVOs;
+    }
+    
+    /**
+     * 按分类查找新商品
+     */
+    public List<OsProduct> getNewProduct(Long categoryId) {
+        List<OsProduct> list = osProductMapper.getNewProduct(categoryId);
+        return list;
+    }
+    
+    /**
+     * 按分类商品价格高-低
+     */
+    public List<OsProduct> getPriceDescProduct(Long categoryId) {
+        List<OsProduct> list = osProductMapper.getPriceDescProduct(categoryId);
+        return list;
+    }
+    /**
+     * 按分类商品价格低-高
+     */
+    public List<OsProduct> getPriceAscProduct(Long categoryId) {
+        List<OsProduct> list = osProductMapper.getPriceAscProduct(categoryId);
+        return list;
+    }
+    /**
+     * 按分类商品销量
+     */
+ /*   public List<OsProduct> getHotProduct(@Param("categoryId")Long categoryId) {
+    	 ArrayList<ProductVO> HotProductnumber = osOrderProductMapper.getHotProductNumber();
+    	 List<OsProduct> list=osProductMapper.getHotProduct(categoryId,HotProductnumber);
+        return list;
+    }
+    */
   /**
      * 查询商品详情
      */
     public OsProduct getProductDetil(Long productNumber) {
         OsProduct product = osProductMapper.selectByProductNumber(productNumber);
-        return product;
-    }
-   /**
-     * 查询商品图片
-     */
-    public List<OsProductImage> getProductImages(Long productId) {
-        List<OsProductImage> product = (List<OsProductImage>) osProductImageMapper.selectByProductId(productId);
         return product;
     }
 
@@ -73,15 +125,6 @@ public class OsProductService {
         List<OsProductParameter> list = (List<OsProductParameter>) osProductParameterMapper.selectByProductId(productId);
         return list;
     }
-
-    /**
-     * 查询商品详细介绍
-     */
-    public OsProductDetail getProductDetail(Long productId) {
-        OsProductDetail detail = osProductDetailMapper.selectByProductId(productId);
-        return detail;
-    }
-
     /**
      * 查询商品对应规格
      */
@@ -106,10 +149,10 @@ public class OsProductService {
      * 查询分类规格组合
      */
     public List<KindVO> getProductKind(Long productId) {
-        //先根据商品找出父类
-        OsCategory osCategory = osCategoryMapper.selectParentCategoryByProductId(productId);
-        //父类查找所有的规格组合
-        List<KindVO> kindVOs = osProductSpecificationMapper.selectSpecByCategoryId(osCategory.getCategoryId());
+        //先根据商品ID查找分类ID
+        Long osCategoryID = osCategoryMapper.selectCategoryByProductId(productId);
+        //按分类ID查找所有的规格组合
+        List<KindVO> kindVOs = osProductSpecificationMapper.selectSpecByCategoryId(osCategoryID);
         //查找当前商品的规格组合 去除不存在的规格
         List<OsProductSpecification> list = osProductSpecificationMapper.selectByProductId(productId);
         Set<String> sset = new HashSet<String>();
@@ -192,7 +235,7 @@ public class OsProductService {
         this.l = l;
     }
 
-    //分页查询商品信息
+   /* //分页查询商品信息
     public List<OsProduct> pageProductInfo(Long categoryId, Integer sort, Integer page, Integer limit) {
         if(categoryId == 1) {
             PageHelper.startPage(page, 8);
@@ -201,21 +244,75 @@ public class OsProductService {
             return list;
         }
         // 根据类目ID查找子类目
-        List<OsCategory> lowerCategories = osCategoryService.listLowerCategories(categoryId);
         List<String> categoryIds = new ArrayList<String>();
-        //如果有子目录
-        if(lowerCategories != null || lowerCategories.size() != 0) {
-            for(OsCategory os : lowerCategories) {
-                categoryIds.add(String.valueOf(os.getCategoryId()));
-            }
-        }
-        if(lowerCategories.size() == 0){
-            //没有子目录
-            categoryIds.add(String.valueOf(categoryId));
-        }
         PageHelper.startPage(page, limit);
         List<OsProduct> list = osProductMapper.listByPage(categoryIds);
         this. l = (Page<OsProduct>)list;
         return list;
+    }*/
+    
+    
+    //不分页查询商品信息
+    public List<OsProduct> pageProductInfo(Long categoryId) {
+        if(categoryId == 1) {
+            List<OsProduct> list = osProductMapper.selectAll();
+            return list;
+        }else {
+        	 List<OsProduct> list = osProductMapper.selectProductByCategoryId(categoryId);
+             return list;
+        }
     }
+    
+    //新增商品
+    public int insertProduct(OsProduct product,HttpServletRequest request) {
+    	String picImg=product.getPicImg();
+    	String detailImg=product.getDetailImg();
+    	Long num=GetRandom.getNumber();
+    	if(picImg.contains("fakepath")||detailImg.contains("fakepath")) {
+    		String uploadFileName1=StringEscapeUtils.unescapeJava(picImg);
+    		String uploaddetailImgName=StringEscapeUtils.unescapeJava(detailImg);
+    		uploadFileName=uploadFileName1.substring(uploadFileName1.lastIndexOf("h")+1);
+    		String uploaddetailImgName1=uploaddetailImgName.substring(uploaddetailImgName.lastIndexOf("h")+1);
+            String path = request.getServletContext().getRealPath("/images");  
+            product.setProductNumber(num);
+            product.setCreateTime(new Date());
+            product.setPicImg("images/goods/" + uploadFileName);
+            product.setDetailImg("images/goods/" + uploaddetailImgName1);
+    		}
+    	int count = osProductMapper.insertSelective(product);
+        return count;
+    }
+
+    //更新商品
+    public int updateProduct(OsProduct product,	HttpServletRequest request) {
+    		String picImg=product.getPicImg();
+    		String detailImg=product.getDetailImg();
+    		if(picImg.contains("fakepath")||detailImg.contains("fakepath")) {
+    		String uploadFileName1=StringEscapeUtils.unescapeJava(picImg);
+    		String uploaddetailImgName=StringEscapeUtils.unescapeJava(detailImg);
+    		uploadFileName=uploadFileName1.substring(uploadFileName1.lastIndexOf("h")+1);
+    		String uploaddetailImgName1=uploaddetailImgName.substring(uploaddetailImgName.lastIndexOf("h")+1);
+            String path = request.getServletContext().getRealPath("/images");  
+            product.setPicImg("images/goods/" + uploadFileName);
+            product.setDetailImg("images/goods/" + uploaddetailImgName1);
+            int count = osProductMapper.updateByPrimaryKeySelective(product);
+            return count;
+    		}else {
+    			String uploadFileName1=StringEscapeUtils.unescapeJava(picImg);
+        		String uploaddetailImgName=StringEscapeUtils.unescapeJava(detailImg);
+        		uploadFileName=uploadFileName1.substring(uploadFileName1.lastIndexOf("s")+1);
+        		String uploaddetailImgName1=uploaddetailImgName.substring(uploaddetailImgName.lastIndexOf("s")+1);
+                String path = request.getServletContext().getRealPath("/images");  
+                product.setPicImg("images/goods" + uploadFileName);
+                product.setDetailImg("images/goods" + uploaddetailImgName1);
+                int count = osProductMapper.updateByPrimaryKeySelective(product);
+                return count;
+    		}
+    }
+    
+    public ProductVO deleteProduct( Long productId) {
+    	osProductMapper.deleteByPrimaryKey(productId);
+		return null;
+   }
+    
 }

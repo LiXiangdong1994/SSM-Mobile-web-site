@@ -37,7 +37,6 @@ public class OsProductCartController {
         request.setAttribute("product", osProduct);
         if (flag == false) {
             // 重定向到购物车列表
-            System.out.println("flag is false");
             return "/product/product_cart_info";
         }
         return "/product/product_cart_info";
@@ -55,7 +54,6 @@ public class OsProductCartController {
         if(session.getAttribute("user") != null) {
             CartVO cartVO = osProductCartService.insertProductCart(productSpecNumber, session);
             session.setAttribute("cart", cartVO);
-            System.out.println(cartVO.toString());
             return new OsResult(1, productSpecNumber.toString());
         } else {
             return new OsResult(401,"还未登录");
@@ -74,7 +72,6 @@ public class OsProductCartController {
         if(session.getAttribute("user") != null) {
             CartVO cartVO = osProductCartService.deleteProductCart(productSpecNumber, session);
             session.setAttribute("cart", cartVO);
-            System.out.println(cartVO.toString());
             return new OsResult(1, productSpecNumber.toString());
         } else {
             return new OsResult(401,"还未登录");
@@ -104,8 +101,6 @@ public class OsProductCartController {
         if(session.getAttribute("user") != null) {
             CartVO cartVO = osProductCartService.insertProductCart(productSpecNumber, session, buyNumber);
             session.setAttribute("cart", cartVO);
-            System.out.println(cartVO.toString());
-            System.out.println(buyNumber+"s");
             return new OsResult(1, productSpecNumber.toString());
         } else {
             return new OsResult(401,"还未登录");
@@ -123,7 +118,6 @@ public class OsProductCartController {
         if(session.getAttribute("user") != null) {
             CartVO cartVO = osProductCartService.deProductCart(productSpecNumber, session, buyNumber);
             session.setAttribute("cart", cartVO);
-            System.out.println(cartVO.toString());
             return new OsResult(1, productSpecNumber.toString());
         } else {
             return new OsResult(401,"还未登录");

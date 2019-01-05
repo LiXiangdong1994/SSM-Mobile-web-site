@@ -32,41 +32,37 @@
                   <dd class="goods-subtitle">
                     <p> ${product.introduce} </p>
                   </dd>
-                  <dd class="goods-info-head-tip">
-                    <ul>
-                    </ul>
-                  </dd>
-                  <dd class="goods-price">
-                  	 <span> ${product.showPrice}</span> 
+                  <dt class="product-price">
+                  	 <span class="product-price2"> ${product.showPrice}</span> 
                    	 <i>&nbsp;元</i> 
-                   </dd>
+                   </dt>
                   <c:forEach items="${kindVOs}" var="kindVO">
-                    <dd class="goods-size"  data-sid="${kindVO.specificationId}"> 
+                    <dd class="goods-size"  data-sid="${kindVO.specificationId}" style="float: left;width: 500px;"> 
                     <span class="style-label">${kindVO.name}：</span>
                     	<c:if test="${empty kindVO.kindAttributes}">
                  			<h3 style="color: red;">暂无信息</h3>
                 		</c:if>
-                      <ul class="kindAttributes">
+                      <ul class="kindAttributes" >
                         <c:forEach items="${kindVO.kindAttributes}" var="kindAttribute">
-                          <li data-aid="${kindAttribute.specAttrId}">
+                          <li data-aid="${kindAttribute.specAttrId}" style="float: left;">
                           <a href="javascript:;" class="item goodsStyle" title="${kindAttribute.name}">${kindAttribute.name}</a></li>
                         </c:forEach>
                       </ul>
                     </dd>
                        <hr style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="100%" color=#636363 SIZE=1>
                   </c:forEach>
-               <dd class="goods-info-head-cart" id="goodsDetailBtnBox"> 
+               <dd > 
                   <a href="javascript:void(0)" onclick="add_cart(this)" id="goodsDetailAddCartBtn" class="btn btn-primary goods-add-cart-btn" data-product-spec-number=""> <i class="glyphicon glyphicon-shopping-cart"></i>加入购物车 </a> <a id="goodsDetailCollectBtn" data-pid="${product.productNumber}" data-isfavorite="false" class=" btn btn-gray  goods-collect-btn" href="javascript:void(0)" onclick="add_favorite(this);"> <i class="glyphicon glyphicon-heart-empty"></i>&nbsp;喜欢&nbsp; </a> 
                   </dd>
                   <dd class="goods-info-head-cart" id="goodsDetailBtnBoxForInform" style="display: none;">
                    
                 </dl>
   	</div>
-  	  <hr style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="100%" color=#636363 SIZE=1>
     <!-- 商品简介end-->
     
     <!-- 商品详情中部导航栏，包括详情描述和规格参数 -->
     <div class="goods-detail-nav">
+      <hr style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="100%" color=#636363 SIZE=1>
         <ul class="detail-list" >
           <li class="detail-nav"> 
              <a href="#goodsDesc" data-index='0'>详情描述</a> 
@@ -79,9 +75,7 @@
     <hr style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="100%" color=#636363 SIZE=1>
     <!-- 商品详情内容 -->
     <div class="goods-detail-desc" id="goodsDesc" style="display: block;">
-        <div class="shape-container">
-          <p class="detailBlock"> ${detail.description} </p>
-        </div>
+	<img alt="${pruduct.name}" src="${ctximg}/${product.detailImg}" title="${pruduct.name}" style="width: 100%;height: 100%;">
     </div>
      <hr style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="100%" color=#636363 SIZE=1>
     <!-- 规格导航栏 -->
@@ -92,7 +86,7 @@
     <div class="goods-detail-param">
         <div class="param-list">
           	<li class='goods-img'> 
-         	 	<img alt="${pruduct.name}" src="${ctximg}/${product.picImg}" title="${pruduct.name}">
+         	 	<img alt="${pruduct.name}" src="${ctximg}/${product.picImg}" title="${pruduct.name}" style="width: 100%;height: 100%;">
            	</li>
          </div>
          <div class="param-list2">
@@ -100,6 +94,7 @@
          		<h1 style="color: red;">暂无信息</h1>
          	</c:if>
                  <c:forEach items="${productParameter}" var="productParameter">
+                 
                  	<li> ${productParameter.name}：${productParameter.value} </li>
                   </c:forEach>
      	  </div>

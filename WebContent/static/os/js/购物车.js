@@ -49,10 +49,11 @@ window.onload=function(){
 	}) 
 //减	
 	$reduce.click(function(){ 
-		for (var i = 0; i <tr.length; i++) {
+		
 			var countInout=$(this).parent().find('input'); 
 			var value=parseInt(countInout.val());
 			if(value>1){
+			for (var i = 0; i <tr.length; i++) {
 			tr[i].onclick = function(e) {
 			var e = e || window.event;
 			var el = e.target || e.srcElement; //通过事件对象的target属性获取触发元素
@@ -67,9 +68,9 @@ window.onload=function(){
 				}
 			});
 		}
-					}else {
-						alert("数量已经为最低！");
-				}
+		}
+	}else if(value==1) {
+		alert("数量已经为最低！");
 	}
 		
 }) 	

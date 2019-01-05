@@ -1,6 +1,7 @@
 @charset "UTF-8";
 body{
-	width:1500px;
+	width:1400px;
+	
 }
 /*  整个展示页面*/
 .page-main{
@@ -9,6 +10,7 @@ body{
 	height:100%;
 	margin-left:auto;
 	margin-right:auto;	
+	background-color: #f4f4f4;
 }
 /*页面的所有li */
 li{
@@ -53,8 +55,24 @@ li{
 .brick-item .price{
 	color:red;
 }
+* {box-sizing: border-box;}
+
+.row .col {
+  float: left;
+  width: 30%;
+  border: 10px solid #fff;
+}
+/* 新品 */
+.newProduct .flag{
+	position: absolute;
+	 z-index: 2;
+	width:50px;
+	color:white;
+	background-color:green;
+	text-align: center;
+}
 /* 热销 */
-.brick-item .flag{
+.hotProduct .flag{
 	position: absolute;
 	 z-index: 2;
 	width:50px;

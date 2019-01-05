@@ -11,6 +11,7 @@ import java.util.List;
 public class ProductVO implements java.io.Serializable {
 
 	private Long productId;
+	private Long categoryId ;
 	private Long productNumber;
 	private String name;
 	private BigDecimal showPrice;
@@ -21,6 +22,7 @@ public class ProductVO implements java.io.Serializable {
 	private String pageTitle;
 	private String pageDescription;
 	private String remarks;
+	private String detailImg;
 	private List<ProductVO> productVOs;
 	   public List<ProductVO> getproductVOs() {
 			return productVOs;
@@ -32,8 +34,9 @@ public class ProductVO implements java.io.Serializable {
 	public ProductVO() {
 	}
 
-	public ProductVO(Long productNumber, String name, BigDecimal showPrice, String introduce, String picImg,
-			Date createTime, Date updateTime, String pageTitle, String pageDescription, String remarks) {
+	public ProductVO(Long categoryId, Long productNumber, String name, BigDecimal showPrice, String introduce, String picImg,
+			Date createTime, Date updateTime, String pageTitle, String pageDescription, String remarks,String detailImg) {
+		this.categoryId = categoryId;
 		this.productNumber = productNumber;
 		this.name = name;
 		this.showPrice = showPrice;
@@ -44,12 +47,21 @@ public class ProductVO implements java.io.Serializable {
 		this.pageTitle = pageTitle;
 		this.pageDescription = pageDescription;
 		this.remarks = remarks;
+		this.detailImg = detailImg;
 	}
 
 	public Long getProductId() {
 		return this.productId;
 	}
+	
+	public Long getCategoryId() {
+		return this.categoryId;
+	}
 
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
+	}
+	
 	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
@@ -125,13 +137,19 @@ public class ProductVO implements java.io.Serializable {
 	public void setPageDescription(String pageDescription) {
 		this.pageDescription = pageDescription == null ? null : pageDescription.trim();
 	}
-
 	public String getRemarks() {
 		return this.remarks;
 	}
-
 	public void setRemarks(String remarks) {
 		this.remarks =remarks == null ? null : remarks.trim();
 	}
+
+	public String getDetailImg() {
+		return this.detailImg;
+	}
+	public void setDetailImg(String detailImg) {
+		this.detailImg =detailImg == null ? null : detailImg.trim();
+	}
+
 
 }

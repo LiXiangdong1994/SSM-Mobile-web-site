@@ -12,39 +12,22 @@ public class OsOrder implements java.io.Serializable {
 	private Long orderId;
 	private Long orderNumber;
 	private Long userId;
-	private Byte payType;
-	private Byte shipmentTime;
-	private Byte shipmentType;
-	private Long shipmentAmount;
-	private Byte invoiceType;
-	private String invoiceTitle;
 	private Byte orderStatus;
 	private Date createTime;
-	private Date updateTime;
 	private BigDecimal orderAmount;
-	private Integer orderScore;
 	private BigDecimal payAmount;
 	private Integer buyNumber;
 
 	public OsOrder() {
 	}
 
-	public OsOrder(Long orderNumber, Long userId, Byte payType, Byte shipmentTime, Byte shipmentType,
-			Long shipmentAmount, Byte invoiceType, String invoiceTitle, Byte orderStatus, Date createTime,
-			Date updateTime, BigDecimal orderAmount, Integer orderScore, BigDecimal payAmount, Integer buyNumber) {
+	public OsOrder(Long orderNumber, Long userId, Byte orderStatus, Date createTime,
+			 BigDecimal orderAmount, BigDecimal payAmount, Integer buyNumber) {
 		this.orderNumber = orderNumber;
 		this.userId = userId;
-		this.payType = payType;
-		this.shipmentTime = shipmentTime;
-		this.shipmentType = shipmentType;
-		this.shipmentAmount = shipmentAmount;
-		this.invoiceType = invoiceType;
-		this.invoiceTitle = invoiceTitle;
 		this.orderStatus = orderStatus;
 		this.createTime = createTime;
-		this.updateTime = updateTime;
 		this.orderAmount = orderAmount;
-		this.orderScore = orderScore;
 		this.payAmount = payAmount;
 		this.buyNumber = buyNumber;
 	}
@@ -73,54 +56,6 @@ public class OsOrder implements java.io.Serializable {
 		this.userId = userId;
 	}
 
-	public Byte getPayType() {
-		return this.payType;
-	}
-
-	public void setPayType(Byte payType) {
-		this.payType = payType;
-	}
-
-	public Byte getShipmentTime() {
-		return this.shipmentTime;
-	}
-
-	public void setShipmentTime(Byte shipmentTime) {
-		this.shipmentTime = shipmentTime;
-	}
-
-	public Byte getShipmentType() {
-		return this.shipmentType;
-	}
-
-	public void setShipmentType(Byte shipmentType) {
-		this.shipmentType = shipmentType;
-	}
-
-	public Long getShipmentAmount() {
-		return this.shipmentAmount;
-	}
-
-	public void setShipmentAmount(Long shipmentAmount) {
-		this.shipmentAmount = shipmentAmount;
-	}
-
-	public Byte getInvoiceType() {
-		return this.invoiceType;
-	}
-
-	public void setInvoiceType(Byte invoiceType) {
-		this.invoiceType = invoiceType;
-	}
-
-	public String getInvoiceTitle() {
-		return this.invoiceTitle;
-	}
-
-	public void setInvoiceTitle(String invoiceTitle) {
-		this.invoiceTitle = invoiceTitle;
-	}
-
 	public Byte getOrderStatus() {
 		return this.orderStatus;
 	}
@@ -137,28 +72,12 @@ public class OsOrder implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	public Date getUpdateTime() {
-		return this.updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
 	public BigDecimal getOrderAmount() {
 		return this.orderAmount;
 	}
 
 	public void  setOrderAmount(BigDecimal orderAmount) {
 		this.orderAmount = orderAmount;
-	}
-
-	public Integer getOrderScore() {
-		return this.orderScore;
-	}
-
-	public void setOrderScore(Integer orderScore) {
-		this.orderScore = orderScore;
 	}
 
 	public BigDecimal getPayAmount() {

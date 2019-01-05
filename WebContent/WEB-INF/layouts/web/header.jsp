@@ -21,10 +21,11 @@
 		</c:if>
 		 <c:if test="${not empty user.userNumber}">
 			<div class="main-top1-left"> 
-   					<li class="li1"><span class="name">${user.userName}</span>&nbsp;&nbsp;</li>
+   					<li class="li1" style="font-size:20px;color:#636363;"><span class="name">${user.userName}</span>&nbsp;&nbsp;</li>
    					<li class="li1"><a rel="nofollow" href="${ctx}/pass/logout">退出登录</a></li>  
    					<li class="li1"><a href='${ctx}/index'>首页</a></li>
-   					<li class="li1"><a href="#">手机版商城</a></li>    					
+   					<li class="li1"><a href="#">手机版商城</a></li>   
+   					<li class="li1"><a href="${ctx}/root/productlist" target="_blank";>后台管理</a></li>  					
 			</div>
 			<div class="main-top1-right">
 				<li class="li2">

@@ -9,10 +9,11 @@ $(function() {
  */
 function show_hot_category() {
 	$.ajax({
-		url : baselocation + "/recommend/hot",
+		url : baselocation + "/recommend/hotproduct",
 		type : 'get',
 		dataType : 'text',
 		success : function(result) {
+			
 			$("#J_hotCategory").html(result);
 		}
 	});

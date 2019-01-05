@@ -6,25 +6,26 @@ import com.shop.po.OsCategory;
 import com.shop.vo.CategoryVO;
 public interface OsCategoryMapper {
 	
-	int deleteByPrimaryKey(Long categoryId);
+	int deleteByPrimaryKey(Long categoryId);//按分类ID删除分类
 	
-	int insert (OsCategory record);
+	int insert (OsCategory record);//添加分类
 	
-	int insertSelective(OsCategory record);
+	int insertSelective(OsCategory record);//添加分类
 	
-	OsCategory selectByPrimaryKey(Long categoryId);
+	OsCategory selectByPrimaryKey(Long categoryId);//按分类ID查找分类
 	
-	int updateByPrimaryKeySelective(OsCategory record);
+	Long selectCategoryByProductId(Long productId);//按商品ID查找分类
 	
-	int updateByPrimaryKey(OsCategory record);
+	int updateByPrimaryKeySelective(OsCategory record);//更新分类
+	
+	int updateByPrimaryKey(OsCategory record);//更新分类
 	
 	List<CategoryVO> selectIndexCategory(); /*查询所有的分类显示导航栏分类列表*/
+
+	OsCategory selectCategorysByProductId(Long productId);
 	
-	OsCategory selectParentCategoryByProductId(Long ProduyctId);/*根据商品ID查找种类*/
+	OsCategory selectCategoryByCategoryName(String categoryName);
+
 	
-	// 根据类目ID查找子类目
-    List<OsCategory> listLowerCategories(Long categoryId);
-    // 根据类目ID查找上级类目列表
-    List<OsCategory> listUpperCategories(Long categoryId);
 	
 }

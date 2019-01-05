@@ -5,10 +5,8 @@
     <id column="order_id" jdbcType="BIGINT" property="orderId" />
     <result column="order_number" jdbcType="BIGINT" property="orderNumber" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="pay_type" jdbcType="TINYINT" property="payType" />
     <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="order_amount" jdbcType="DECIMAL" property="orderAmount" />
     <result column="pay_amount" jdbcType="DECIMAL" property="payAmount" />
     <result column="buy_number" jdbcType="INTEGER" property="buyNumber" />
@@ -18,23 +16,11 @@
     <id column="order_id1" jdbcType="BIGINT" property="orderId" />
     <result column="order_number" jdbcType="BIGINT" property="orderNumber" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="pay_type" jdbcType="TINYINT" property="payType" />
     <result column="order_status1" jdbcType="TINYINT" property="orderStatus" />
     <result column="create_time1" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time1" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="order_amount" jdbcType="DECIMAL" property="orderAmount" />
- 
     <result column="pay_amount" jdbcType="DECIMAL" property="payAmount" />
     <result column="buy_number" jdbcType="INTEGER" property="buyNumber" />
-   <association property="osOrderShipment" javaType="com.shop.po.OsOrderShipment">
-   <id column="order_shipment_id4" jdbcType="BIGINT" property="orderShipmentId" />
-      <result column="order_id4" jdbcType="BIGINT" property="orderId" />
-      <result column="user_name4" jdbcType="VARCHAR" property="userName" />
-      <result column="user_phone4" jdbcType="VARCHAR" property="userPhone" />
-      <result column="user_adress4" jdbcType="VARCHAR" property="userAdress" />
-      <result column="user_zipcode4" jdbcType="INTEGER" property="userZipcode" />
-      <result column="update_time4" jdbcType="TIMESTAMP" property="updateTime" />
-    </association>
     <collection property="orderProducts" ofType="com.shop.po.OsOrderProduct">
       <id column="order_product_id" jdbcType="BIGINT" property="orderProductId" />
       <result column="order_id2" jdbcType="BIGINT" property="orderId" />
@@ -48,18 +34,10 @@
       <result column="product_amount" jdbcType="DECIMAL" property="productAmount" />
       <result column="comment_status" jdbcType="TINYINT" property="commentStatus" />
     </collection>
-    <collection property="orderStatusList" ofType="com.shop.po.OsOrderStatus">
-      <id column="order_status_id" jdbcType="BIGINT" property="orderStatusId" />
-      <result column="order_id3" jdbcType="BIGINT" property="orderId" />
-      <result column="order_status3" jdbcType="TINYINT" property="orderStatus" />
-      <result column="create_time3" jdbcType="TIMESTAMP" property="createTime" />
-      <result column="remarks" jdbcType="VARCHAR" property="remarks" />
-    </collection>
-
   </resultMap>
 
   <sql id="Base_Column_List">
-    order_id, order_number, user_id, pay_type, order_status, create_time, update_time, order_amount, 
+    order_id, order_number, user_id, order_status, create_time, order_amount, 
     pay_amount, buy_number
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -80,26 +58,21 @@
 
   <select id="selectByUserId" parameterType="com.shop.vo.OrderVO" resultMap="OrderVOResultMap">
     SELECT
-    oo.order_id AS order_id1, order_number, user_id, pay_type, oo.order_status AS order_status1, oo.create_time AS create_time1, oo.update_time AS update_time1, order_amount,
+    oo.order_id AS order_id1, order_number, user_id,  oo.order_status AS order_status1, oo.create_time AS create_time1, order_amount,
     pay_amount, oo.buy_number AS buy_number1,
     order_product_id, oop.order_id AS order_id2, product_number, `name`, pic_img, product_spec_number, product_spec_name,
-    price, oop.buy_number AS buy_number2, product_amount, comment_status,
-    order_status_id, oos.order_id AS order_id3, oos.order_status AS order_status3, oos.create_time AS create_time3, remarks
+    price, oop.buy_number AS buy_number2, product_amount, comment_status
     FROM
         os_order oo,
-        os_order_product oop,
-        os_order_status oos
-    WHERE
-        oo.order_id = oos.order_id
-    AND oop.order_id = oo.order_id
-    AND oo.user_id = #{userId,jdbcType=BIGINT}
-    ORDER BY
-        oos.create_time DESC
+        os_order_product oop
+    WHERE oop.order_id = oo.order_id 
+    AND oo.user_id = #{userId,jdbcType=BIGINT} 
+    ORDER BY oo.create_time DESC
   </select>
 
   <select id="selectOrderVOByOrderNumber" parameterType="java.lang.Long" resultMap="OrderVOResultMap">
     SELECT
-    oo.order_id AS order_id1, order_number, user_id, pay_type, oo.order_status AS order_status1, oo.create_time AS create_time1, oo.update_time AS update_time1, order_amount,
+    oo.order_id AS order_id1, order_number, user_id, oo.order_status AS order_status1, oo.create_time AS create_time1, order_amount,
     pay_amount, oo.buy_number AS buy_number1,
     order_product_id, oop.order_id AS order_id2, product_number, `name`, pic_img, product_spec_number, product_spec_name,
     price, oop.buy_number AS buy_number2, product_amount, comment_status,
@@ -123,11 +96,11 @@
   </delete>
   <insert id="insert" parameterType="com.shop.po.OsOrder">
     insert into os_order (order_id, order_number, user_id, 
-      pay_type, order_status, create_time, update_time, 
+     order_status, create_time,  
       order_amount, pay_amount, 
       buy_number)
     values (#{orderId,jdbcType=BIGINT}, #{orderNumber,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
-      #{payType,jdbcType=TINYINT}, #{orderStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{orderStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
       #{orderAmount,jdbcType=DECIMAL}, #{payAmount,jdbcType=DECIMAL}, 
       #{buyNumber,jdbcType=INTEGER})
   </insert>
@@ -146,17 +119,11 @@
       <if test="userId != null">
         user_id,
       </if>
-      <if test="payType != null">
-        pay_type,
-      </if>
       <if test="orderStatus != null">
         order_status,
       </if>
       <if test="createTime != null">
         create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
       </if>
       <if test="orderAmount != null">
         order_amount,
@@ -178,17 +145,11 @@
       <if test="userId != null">
         #{userId,jdbcType=BIGINT},
       </if>
-      <if test="payType != null">
-        #{payType,jdbcType=TINYINT},
-      </if>
       <if test="orderStatus != null">
         #{orderStatus,jdbcType=TINYINT},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="orderAmount != null">
         #{orderAmount,jdbcType=DECIMAL},
@@ -210,17 +171,11 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=BIGINT},
       </if>
-      <if test="payType != null">
-        pay_type = #{payType,jdbcType=TINYINT},
-      </if>
       <if test="orderStatus != null">
         order_status = #{orderStatus,jdbcType=TINYINT},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="orderAmount != null">
         order_amount = #{orderAmount,jdbcType=DECIMAL},
@@ -238,10 +193,8 @@
     update os_order
     set order_number = #{orderNumber,jdbcType=BIGINT},
       user_id = #{userId,jdbcType=BIGINT},
-      pay_type = #{payType,jdbcType=TINYINT},
       order_status = #{orderStatus,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
       order_amount = #{orderAmount,jdbcType=DECIMAL},
       pay_amount = #{payAmount,jdbcType=DECIMAL},
       buy_number = #{buyNumber,jdbcType=INTEGER}

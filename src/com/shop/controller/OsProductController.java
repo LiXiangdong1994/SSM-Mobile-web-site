@@ -7,10 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.shop.po.OsProductDetail;
 import com.shop.vo.KindVO;
 import com.shop.vo.ProductVO;
-
 import ch.ethz.ssh2.Session;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.common.OsResult;
 import com.shop.po.OsProduct;
-import com.shop.po.OsProductImage;
 import com.shop.po.OsProductParameter;
 import com.shop.service.OsProductService;
-import com.shop.vo.HotCategoryVO;
 
 /**
  * 商品控制器
@@ -40,11 +36,13 @@ public class OsProductController {
 	@Autowired
     OsProductService osProductService;
 
-	// 首页热门分类
-	@RequestMapping("/recommend/hot")
+	// 首页热门、新商品
+	@RequestMapping("/recommend/hotproduct")
 	public String recommendTop(HttpServletRequest request) {
-		ArrayList<HotCategoryVO> categorys = osProductService.getHotCategory();
-		request.setAttribute("categorys", categorys);
+		ArrayList<ProductVO> newproductVOs = osProductService.getAllNewProduct();
+		request.setAttribute("newproductVOs", newproductVOs);
+		ArrayList<ProductVO> hotproductVOs=osProductService.getAllHotProduct();
+		request.setAttribute("hotproductVOs", hotproductVOs);
 		return "/recommend/recommend_hot";
 	}
 	// 查询商品
@@ -57,7 +55,6 @@ public class OsProductController {
 			}else {
 				request.setAttribute("OsProducts", OsProducts);
 				session.setAttribute("OsProducts",request.getAttribute("OsProducts"));
-				System.out.println(OsProducts);
 				 return new OsResult(1, "");
 			}
 		}
@@ -73,18 +70,13 @@ public class OsProductController {
 	public String productDetail(HttpServletRequest request, @PathVariable Long productNumber) {
 		//信息
 		OsProduct osProduct = osProductService.getProductDetil(productNumber);
-		//商品详细介绍
-		OsProductDetail detail = osProductService.getProductDetail(osProduct.getProductId());
-		//图片
-		List<OsProductImage> productImages = osProductService.getProductImages(osProduct.getProductId());
 		//参数
 		List<OsProductParameter> productParameter = osProductService.getProductParameter(osProduct.getProductId());
+
 		//规格
-		List<KindVO> kindVOs = osProductService.getProductKind(osProduct.getProductId());
+		List<KindVO>  kindVOs= osProductService.getProductKind(osProduct.getProductId());
 		Map<String, Object> map =  osProductService.getProductSpecification(osProduct.getProductId());
 		request.setAttribute("product",osProduct);
-		request.setAttribute("detail",detail);
-		request.setAttribute("productImages",productImages);
 		request.setAttribute("productParameter",productParameter);
 		request.setAttribute("kindVOs",kindVOs);
 		request.setAttribute("productSpecifications", JSONObject.fromObject(map));

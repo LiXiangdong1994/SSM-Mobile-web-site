@@ -24,7 +24,7 @@ $(function () {
         var _val = '';
         var _resp = {
             score: ".sys_item_score",
-            price: ".goods-price",
+            price: ".product-price2",
         }
         //输出对应的class
         $(".goods-size").each(function () {
@@ -78,7 +78,7 @@ $(function () {
         // 输出对应的class
         var _resp = {
             //score: ".sys_item_score",
-            price: ".goods-price",
+            price: ".product-price2",
         }
 
         $(_resp.score).text(_score); // 其中的math.round为截取小数点位数

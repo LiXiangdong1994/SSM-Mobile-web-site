@@ -1,8 +1,6 @@
 package com.shop.vo;
 
 import com.shop.po.OsOrderProduct;
-import com.shop.po.OsOrderShipment;
-import com.shop.po.OsOrderStatus;
 
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
@@ -48,12 +46,8 @@ public class OrderVO {
     private BigDecimal payAmount;
 
     private Integer buyNumber;
-
-    private OsOrderShipment osOrderShipment;
-
+    
     private ArrayList<OsOrderProduct> orderProducts;
-
-    private ArrayList<OsOrderStatus> orderStatusList;//按最近时间排序
     
     public List<OrderVO> getorderVOs() {
 		return orderVOs;
@@ -198,19 +192,4 @@ public class OrderVO {
         this.orderProducts = orderProducts;
     }
 
-    public ArrayList<OsOrderStatus> getOrderStatusList() {
-        return orderStatusList;
-    }
-
-    public void setOrderStatusList(ArrayList<OsOrderStatus> orderStatusList) {
-        this.orderStatusList = orderStatusList;
-    }
-
-    public OsOrderShipment getOsOrderShipment() {
-        return osOrderShipment;
-    }
-
-    public void setOsOrderShipment(OsOrderShipment osOrderShipment) {
-        this.osOrderShipment = osOrderShipment;
-    }
 }

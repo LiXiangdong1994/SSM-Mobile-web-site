@@ -27,16 +27,16 @@ public class OsCategoryService {
 		return osCategory;
 	}
 	
-	// 根据类目ID查找子类目
-		public List<OsCategory> listLowerCategories(Long categoryId) {
-			List<OsCategory> list = osCategoryMapper.listLowerCategories(categoryId);
-			return list;
-		}
-
-		// 根据类目ID查找上级类目列表
-		public List<OsCategory> listUpperCategories(Long categoryId) {
-			List<OsCategory> list = osCategoryMapper.listUpperCategories(categoryId);
-			return list;
+	//根据商品id查询种类
+	public OsCategory selectCategorysByProductId(Long productId) {
+		OsCategory osCategory = osCategoryMapper.selectCategorysByProductId(productId);
+		return osCategory;
+	}
+	
+	//根据分类名称查询种类
+		public OsCategory selectCategoryByCategoryName(String categoryName) {
+			OsCategory osCategory = osCategoryMapper.selectCategoryByCategoryName(categoryName);
+			return osCategory;
 		}
 	
 }

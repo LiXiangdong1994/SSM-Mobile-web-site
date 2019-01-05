@@ -4,16 +4,11 @@
 <!-- 这是操作OsCategoryMapper实体类的 -->
 	<resultMap type="com.shop.po.OsCategory" id="BaseResultMap">
 		<id column="category_id" jdbcType="BIGINT" property="categoryId"/>
-		<result column="parent_id" jdbcType="BIGINT" property="parentId"/>
 		<result column="name" jdbcType="VARCHAR" property="name"/>
-		<result column="sort" jdbcType="INTEGER" property="sort"/>
-        <result column="type" jdbcType="TINYINT" property="type"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="page_title" jdbcType="VARCHAR" property="pageTitle"/>
         <result column="page_description" jdbcType="VARCHAR" property="pageDescription"/>
-        <result column="page_keyword" jdbcType="VARCHAR" property="pageKeyword"/>
-        <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
 	</resultMap>
 <!-- 这是操作数据库的 -->
 <resultMap id="IndexCategory" type="com.shop.vo.CategoryVO">
@@ -34,10 +29,7 @@
         </collection>
     </resultMap>
 	<sql id="Base_Column_List">
-		category_id, parent_id, name, sort, type, create_time,
-		update_time, page_title,
-		page_description,
-		page_keyword, remarks
+		category_id, name, create_time,update_time, page_title,page_description
 	</sql>
 	<!--  根据categoryId查询-->
 	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -46,90 +38,47 @@
 		from os_category
 		where category_id = #{categoryId,jdbcType=BIGINT}
 	</select>
-	
-	<select id="selectParentCategoryByProductId" parameterType="java.lang.Long" resultMap="BaseResultMap" >
-		select distinct
-			oc2.category_id,
-			oc2.`name`
-		from 
-			os_category oc1,
-			os_category oc2,
-			os_product_category opc
-		where
-			oc1.category_id=opc.category_id
-		and oc1.parent_id=oc2.category_id
-		and opc.product_id=#{productId,jdbcType=BIGINT}
+	<!--  根据categoryName查询-->
+	<select id="selectCategoryByCategoryName" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select 
+			<include refid="Base_Column_List"/>
+		from os_category
+		where name = #{name,jdbcType=VARCHAR}
 	</select>
-	
-	<select id="listLowerCategories" parameterType="java.lang.Long" resultMap="BaseResultMap">
-		select distinct
-			oc2.*
-		from
-			os_category oc1,
-			os_category oc2
-		where
-			 oc1.category_id = oc2.parent_id
-        AND oc1.category_id = #{categoryId,jdbcType=BIGINT}
-        ORDER BY
-            oc2.sort
+	<!--  根据商品Id查询-->
+	<select id="selectCategorysByProductId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select 
+		os_category.*
+		from os_category,os_product
+		where os_category.category_id =os_product.category_id and product_id=#{productId,jdbcType=BIGINT}
 	</select>
-	
-	<select id="listUpperCategories" parameterType="java.lang.Long"
-            resultMap="BaseResultMap">
-        SELECT
-        DISTINCT
-            oc2.*
-        FROM
-            os_category oc1,
-            os_category oc2
-        WHERE
-            oc1.category_id = oc2.parent_id
-        AND oc2.category_id = #{categoryId,jdbcType=BIGINT}
-        ORDER BY
-            oc2.sort
-    </select>
-    
+	<!--  根据categoryId删除-->
      <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
 		delete from
 		os_category
 		where category_id = #{categoryId,jdbcType=BIGINT}
 	</delete>
-	
+	<!--  插入分类-->
     <insert id="insert" parameterType="com.shop.po.OsCategory">
 		insert into os_category
-		(category_id, parent_id, name,
-		sort, type, create_time,
-		update_time,
-		page_title, page_description,
-		page_keyword, remarks)
+		(category_id,name, create_time,
+		update_time,page_title, page_description)
 		values
 		(#{categoryId,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT},
 		#{name,jdbcType=VARCHAR},
-		#{sort,jdbcType=INTEGER},
-		#{type,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
+		#{createTime,jdbcType=TIMESTAMP},
 		#{updateTime,jdbcType=TIMESTAMP}, #{pageTitle,jdbcType=VARCHAR},
 		#{pageDescription,jdbcType=VARCHAR},
-		#{pageKeyword,jdbcType=VARCHAR},
-		#{remarks,jdbcType=VARCHAR})
 	</insert>
-	
+	<!--  插入分类-->
     <insert id="insertSelective" parameterType="com.shop.po.OsCategory">
         insert into os_category
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="categoryId != null">
                 category_id,
             </if>
-            <if test="parentId != null">
-                parent_id,
-            </if>
             <if test="name != null">
                 name,
-            </if>
-            <if test="sort != null">
-                sort,
-            </if>
-            <if test="type != null">
-                type,
             </if>
             <if test="createTime != null">
                 create_time,
@@ -143,28 +92,13 @@
             <if test="pageDescription != null">
                 page_description,
             </if>
-            <if test="pageKeyword != null">
-                page_keyword,
-            </if>
-            <if test="remarks != null">
-                remarks,
-            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="categoryId != null">
                 #{categoryId,jdbcType=BIGINT},
             </if>
-            <if test="parentId != null">
-                #{parentId,jdbcType=BIGINT},
-            </if>
             <if test="name != null">
                 #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="sort != null">
-                #{sort,jdbcType=INTEGER},
-            </if>
-            <if test="type != null">
-                #{type,jdbcType=TINYINT},
             </if>
             <if test="createTime != null">
                 #{createTime,jdbcType=TIMESTAMP},
@@ -178,29 +112,14 @@
             <if test="pageDescription != null">
                 #{pageDescription,jdbcType=VARCHAR},
             </if>
-            <if test="pageKeyword != null">
-                #{pageKeyword,jdbcType=VARCHAR},
-            </if>
-            <if test="remarks != null">
-                #{remarks,jdbcType=VARCHAR},
-            </if>
         </trim>
     </insert>
-    
+    <!-- 更新分类 -->
     <update id="updateByPrimaryKeySelective" parameterType="com.shop.po.OsCategory">
         update os_category
         <set>
-            <if test="parentId != null">
-                parent_id = #{parentId,jdbcType=BIGINT},
-            </if>
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="sort != null">
-                sort = #{sort,jdbcType=INTEGER},
-            </if>
-            <if test="type != null">
-                type = #{type,jdbcType=TINYINT},
             </if>
             <if test="createTime != null">
                 create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -214,61 +133,42 @@
             <if test="pageDescription != null">
                 page_description = #{pageDescription,jdbcType=VARCHAR},
             </if>
-            <if test="pageKeyword != null">
-                page_keyword = #{pageKeyword,jdbcType=VARCHAR},
-            </if>
-            <if test="remarks != null">
-                remarks = #{remarks,jdbcType=VARCHAR},
-            </if>
         </set>
         where category_id = #{categoryId,jdbcType=BIGINT}
     </update>
-    
+    <!--  更新分类-->
     <update id="updateByPrimaryKey" parameterType="com.shop.po.OsCategory">
 		update os_category
-		set parent_id = #{parentId,jdbcType=BIGINT},
-		name =
-		#{name,jdbcType=VARCHAR},
-		sort = #{sort,jdbcType=INTEGER},
-		type =
-		#{type,jdbcType=TINYINT},
-		create_time =
-		#{createTime,jdbcType=TIMESTAMP},
-		update_time =
-		#{updateTime,jdbcType=TIMESTAMP},
-		page_title =
-		#{pageTitle,jdbcType=VARCHAR},
-		page_description =
-		#{pageDescription,jdbcType=VARCHAR},
-		page_keyword =
-		#{pageKeyword,jdbcType=VARCHAR},
-		remarks = #{remarks,jdbcType=VARCHAR}
+		set name =#{name,jdbcType=VARCHAR},
+		create_time =#{createTime,jdbcType=TIMESTAMP},
+		update_time =#{updateTime,jdbcType=TIMESTAMP},
+		page_title =#{pageTitle,jdbcType=VARCHAR},
+		page_description =#{pageDescription,jdbcType=VARCHAR},
 		where category_id = #{categoryId,jdbcType=BIGINT}
 	</update>
-	
-    <select id="selectIndexCategory" resultMap="IndexCategory">
+	<!-- 根据商品id查分类 -->
+	<select id="selectCategoryByProductId" parameterType="java.lang.Long" resultType="java.lang.Long">
+	    select os_category.category_id from os_category,os_product where os_category.category_id=os_product.category_id and os_product.product_id=#{productId}
+	</select>
+	<!--  查询分类下的商品-->
+     <select id="selectIndexCategory" resultMap="IndexCategory">
 		SELECT
-		c2.category_id,
-		c2.`name`,
-		p.product_id,
-		p.product_number,
-		p. NAME AS pname,
-		p.show_price,
-		p.introduce,
-		p.pic_img,
-		p.create_time,
-		p.update_time,
-		p.page_title,
-		p.page_description,
-		p.remarks
+		os_category.category_id,
+		os_category.`name`,
+		os_product.product_id,
+		os_product.product_number,
+		os_product. NAME AS pname,
+		os_product.show_price,
+		os_product.introduce,
+		os_product.pic_img,
+		os_product.create_time,
+		os_product.update_time,
+		os_product.page_title,
+		os_product.page_description,
+		os_product.remarks
 		FROM
-		os_product p,
-		os_product_category pc,
-		os_category c1,
-		os_category c2
-		WHERE
-		p.product_id = pc.product_id
-		AND c1.category_id = pc.category_id
-		AND c2.category_id = c1.parent_id
+		os_product,
+		os_category
+		WHERE os_category.category_id = os_product.category_id
 	</select>
 </mapper>

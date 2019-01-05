@@ -30,8 +30,8 @@
            		 <li>
               		<span>收货信息：</span>
               		<span> 
-              			${orderShipment.userName} ${orderShipment.userPhone}&nbsp;&nbsp;
-                		&nbsp;&nbsp;${orderShipment.userAdress}
+              			${address.userName} ${address.userPhone}&nbsp;&nbsp;
+                		&nbsp;&nbsp;${address.userAdress}
                 	</span>
             	</li>
             	</div>

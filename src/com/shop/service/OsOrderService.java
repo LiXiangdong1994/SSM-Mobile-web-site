@@ -4,8 +4,6 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.shop.dao.OsOrderMapper;
 import com.shop.dao.OsOrderProductMapper;
-import com.shop.dao.OsOrderShipmentMapper;
-import com.shop.dao.OsOrderStatusMapper;
 import com.shop.po.*;
 import com.shop.vo.CartVO;
 import com.shop.vo.OrderVO;
@@ -26,13 +24,9 @@ import javax.servlet.http.HttpSession;
 public class OsOrderService {
 
     @Autowired
-    private OsOrderShipmentMapper osOrderShipmentMapper;
-    @Autowired
     private OsOrderMapper osOrderMapper;
     @Autowired
     private OsOrderProductMapper osOrderProductMapper;
-    @Autowired
-    private OsOrderStatusMapper osOrderStatusMapper;
 
     //保存订单 返回oderid
     public Long saveOsOder(OsOrder order) {
@@ -40,18 +34,9 @@ public class OsOrderService {
         return order.getOrderId();
     }
 
-    //保存订单配送表
-    public void saveOrderShioment(OsOrderShipment orderShipment) {
-        osOrderShipmentMapper.insertSelective(orderShipment);
-    }
-
     //保存订单商品表
     public void saveOrderProduct(OsOrderProduct osOrderProduct) {
         osOrderProductMapper.insertSelective(osOrderProduct);
-    }
-    //保存订单状态表
-    public void saveOrderStatus(OsOrderStatus osOrderStatus) {
-        osOrderStatusMapper.insertSelective(osOrderStatus);
     }
 
     public OsOrder getByOrderNumber(Long orderNumber, Long userId) {
@@ -65,11 +50,6 @@ public class OsOrderService {
     public List<OsOrderProduct> getOrderProductByOrderNumber(Long orderId) {
         List<OsOrderProduct> list = osOrderProductMapper.selectByOrderId(orderId);
         return list;
-    }
-
-    public OsOrderShipment getOrderShipmentByOrderId(Long orderId) {
-        OsOrderShipment osOrderShipment = osOrderShipmentMapper.selectByOderId(orderId);
-        return osOrderShipment;
     }
 
     private Page<OrderVO> l ;

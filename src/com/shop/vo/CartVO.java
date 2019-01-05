@@ -42,12 +42,10 @@ public class CartVO  implements Serializable{
 	}
 
 	public BigDecimal getTotalPrice() {
-		System.out.println("#####");
 		BigDecimal totalPriceTemp = BigDecimal.valueOf(0.0);
 		for (ShoppingCartVO shoppingCartVO : shoppingCartVOs) {
 			totalPriceTemp = totalPriceTemp.add(shoppingCartVO.getProductAmount());
 		}
-		System.out.println("price" + totalPriceTemp.toString());
 		return totalPriceTemp;
 	}
 

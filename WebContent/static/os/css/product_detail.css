@@ -15,6 +15,7 @@
 	float:left;
 	width:1000px;
 	height:500px;
+	margin-left: 200px;
 
 }
 .goods-detail-left{
@@ -32,22 +33,27 @@
 	margin-left: 50px;
 	width:350px;
 	height:100%;
+	overflow: visible;
 }
+
 /*  商品名*/
 .goods-name{
 	font-size: 35px;
 	font-weight: 5px;
 }
 /*  价格*/
-.goods-price{
+.product-price{
 	font-size: 20px;
 	color:red;
+	display:block;
 }
+
 .style-label{
 	font-size: 20px;
 }
 /* 规格：容量和颜色 */
 .goods-size li{
+	margin-top:20px;
 	float:left;
 	list-style: none;
 	border:solid 1px;
@@ -57,6 +63,7 @@
 }
 /*中间商品详情描述和规格参数  */
 .goods-detail-nav{
+	margin-top: 150px;
 	margin-left: 150px;
 	width:100%;
 	float:left;
@@ -94,9 +101,8 @@
 }
 .param-list{
 	float:left;
-	width:300px;
-	height:100%;
-	background-color:black;
+	width:400px;
+	height:90%;
 }
 .param-list2{
 	float:right;

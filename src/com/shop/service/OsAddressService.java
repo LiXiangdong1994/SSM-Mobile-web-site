@@ -28,8 +28,10 @@ public class OsAddressService {
     public void setL(Page<OsAddress> l) {
         this.l = l;
     }
-
-
+    public OsAddress selectaddressByUserId (Long userId) {
+        OsAddress osAddress = osAddressMapper.selectaddressByUserId(userId);
+        return osAddress;
+    }
 
     public List<OsAddress> listAddress(Long userId) {
         List<OsAddress> list = osAddressMapper.selectByUserId(userId);

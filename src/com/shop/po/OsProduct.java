@@ -10,6 +10,7 @@ import java.util.Date;
 public class OsProduct implements java.io.Serializable {
 
 	private Long productId;
+	private Long categoryId ;
 	private Long productNumber;
 	private String name;
 	private BigDecimal showPrice;
@@ -20,12 +21,14 @@ public class OsProduct implements java.io.Serializable {
 	private String pageTitle;
 	private String pageDescription;
 	private String remarks;
+	private String detailImg;
 
 	public OsProduct() {
 	}
 
-	public OsProduct(Long productNumber, String name, BigDecimal showPrice, String introduce, String picImg,
-			Date createTime, Date updateTime, String pageTitle, String pageDescription, String remarks) {
+	public OsProduct(Long categoryId,Long productNumber, String name, BigDecimal showPrice, String introduce, String picImg,
+			Date createTime, Date updateTime, String pageTitle, String pageDescription, String remarks,String detailImg) {
+		this.categoryId = categoryId;
 		this.productNumber = productNumber;
 		this.name = name;
 		this.showPrice = showPrice;
@@ -36,6 +39,7 @@ public class OsProduct implements java.io.Serializable {
 		this.pageTitle = pageTitle;
 		this.pageDescription = pageDescription;
 		this.remarks = remarks;
+		this.detailImg = detailImg;
 	}
 
 	public Long getProductId() {
@@ -44,6 +48,13 @@ public class OsProduct implements java.io.Serializable {
 
 	public void setProductId(Long productId) {
 		this.productId = productId;
+	}
+	public Long getCategoryId() {
+		return this.categoryId;
+	}
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public Long getProductNumber() {
@@ -125,5 +136,11 @@ public class OsProduct implements java.io.Serializable {
 	public void setRemarks(String remarks) {
 		this.remarks =remarks == null ? null : remarks.trim();
 	}
+	public String getDetailImg() {
+		return this.detailImg;
+	}
 
+	public void setDetailImg(String detailImg) {
+		this.detailImg =detailImg == null ? null : detailImg.trim();
+	}
 }
